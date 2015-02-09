@@ -8,19 +8,18 @@
 
 #import "WKH_ViewController.h"
 #import "WK_StoryboardMunger.h"
-#import "WKInterfaceController.h"
+#import "WK_InterfaceController.h"
 
 @interface WKH_ViewController ()
 @property (nonatomic, strong) IBOutlet UIView *watchUIView;
-@property (nonatomic, strong) IBOutlet WKInterfaceController *controllerView;
+@property (nonatomic, strong) IBOutlet WK_InterfaceController *controllerView;
 @end
 
 @implementation WKH_ViewController
 
 - (void) viewDidLayoutSubviews {
 	if (self.controllerView == nil) {
-		NSString				*path = [[NSBundle mainBundle] pathForResource: @"WatchedKitHarness WatchKit Extension" ofType: @"appex" inDirectory: @"PlugIns"];
-		WK_StoryboardMunger		*munger = [WK_StoryboardMunger mungerWithAppExtensionPath: path];
+		WK_StoryboardMunger		*munger = [WK_StoryboardMunger mungerWithFirstWatchKitExtension];
 		self.controllerView = munger.rootController;
 		
 		self.controllerView.interfaceSize = WK_InterfaceSize_42mm;

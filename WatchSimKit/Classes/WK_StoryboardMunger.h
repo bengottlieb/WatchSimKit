@@ -8,13 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
-@class WKInterfaceController;
+@class WK_InterfaceController;
 
 @interface WK_StoryboardMunger : NSObject
 
 @property (nonatomic, copy) NSString *storyboardPath;
-@property (nonatomic, readonly) WKInterfaceController *rootController;
+@property (nonatomic, readonly) WK_InterfaceController *rootController;
 
-+ (instancetype) mungerWithAppExtensionPath: (NSString *) path;
++ (instancetype) mungerWithFirstWatchKitExtension;
 
 @end

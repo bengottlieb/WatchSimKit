@@ -6,6 +6,20 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		B54883D41A87D4AB009F8247 /* Build Combined Framework */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = B54883D51A87D4AB009F8247 /* Build configuration list for PBXAggregateTarget "Build Combined Framework" */;
+			buildPhases = (
+				B54883D81A87D4B3009F8247 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = "Build Combined Framework";
+			productName = "Build Combined Framework";
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		B54883271A86E792009F8247 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B54883261A86E792009F8247 /* main.m */; };
 		B54883301A86E792009F8247 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B548832E1A86E792009F8247 /* Main.storyboard */; };
@@ -34,8 +48,8 @@
 		B54883C11A86F380009F8247 /* WK_InterfaceSeparator.m in Sources */ = {isa = PBXBuildFile; fileRef = B54883A91A86F380009F8247 /* WK_InterfaceSeparator.m */; };
 		B54883C21A86F380009F8247 /* WK_InterfaceStatusBar.h in Headers */ = {isa = PBXBuildFile; fileRef = B54883AA1A86F380009F8247 /* WK_InterfaceStatusBar.h */; };
 		B54883C31A86F380009F8247 /* WK_InterfaceStatusBar.m in Sources */ = {isa = PBXBuildFile; fileRef = B54883AB1A86F380009F8247 /* WK_InterfaceStatusBar.m */; };
-		B54883C41A86F380009F8247 /* WKInterfaceController.h in Headers */ = {isa = PBXBuildFile; fileRef = B54883AC1A86F380009F8247 /* WKInterfaceController.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B54883C51A86F380009F8247 /* WKInterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = B54883AD1A86F380009F8247 /* WKInterfaceController.m */; };
+		B54883C41A86F380009F8247 /* WK_InterfaceController.h in Headers */ = {isa = PBXBuildFile; fileRef = B54883AC1A86F380009F8247 /* WK_InterfaceController.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		B54883C51A86F380009F8247 /* WK_InterfaceController.m in Sources */ = {isa = PBXBuildFile; fileRef = B54883AD1A86F380009F8247 /* WK_InterfaceController.m */; };
 		B54883C61A86F380009F8247 /* WK_InterfaceProfile.h in Headers */ = {isa = PBXBuildFile; fileRef = B54883AE1A86F380009F8247 /* WK_InterfaceProfile.h */; };
 		B54883C71A86F380009F8247 /* WK_InterfaceProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = B54883AF1A86F380009F8247 /* WK_InterfaceProfile.m */; };
 		B54883C81A86F380009F8247 /* WK_StoryboardMunger.h in Headers */ = {isa = PBXBuildFile; fileRef = B54883B01A86F380009F8247 /* WK_StoryboardMunger.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -115,14 +129,15 @@
 		B54883A91A86F380009F8247 /* WK_InterfaceSeparator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WK_InterfaceSeparator.m; sourceTree = "<group>"; };
 		B54883AA1A86F380009F8247 /* WK_InterfaceStatusBar.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WK_InterfaceStatusBar.h; sourceTree = "<group>"; };
 		B54883AB1A86F380009F8247 /* WK_InterfaceStatusBar.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WK_InterfaceStatusBar.m; sourceTree = "<group>"; };
-		B54883AC1A86F380009F8247 /* WKInterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKInterfaceController.h; sourceTree = "<group>"; };
-		B54883AD1A86F380009F8247 /* WKInterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKInterfaceController.m; sourceTree = "<group>"; };
+		B54883AC1A86F380009F8247 /* WK_InterfaceController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WK_InterfaceController.h; sourceTree = "<group>"; };
+		B54883AD1A86F380009F8247 /* WK_InterfaceController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WK_InterfaceController.m; sourceTree = "<group>"; };
 		B54883AE1A86F380009F8247 /* WK_InterfaceProfile.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WK_InterfaceProfile.h; sourceTree = "<group>"; };
 		B54883AF1A86F380009F8247 /* WK_InterfaceProfile.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WK_InterfaceProfile.m; sourceTree = "<group>"; };
 		B54883B01A86F380009F8247 /* WK_StoryboardMunger.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WK_StoryboardMunger.h; sourceTree = "<group>"; };
 		B54883B11A86F380009F8247 /* WK_StoryboardMunger.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WK_StoryboardMunger.m; sourceTree = "<group>"; };
 		B54883B21A86F380009F8247 /* WKH_ViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WKH_ViewController.h; sourceTree = "<group>"; };
 		B54883B31A86F380009F8247 /* WKH_ViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = WKH_ViewController.m; sourceTree = "<group>"; };
+		B54883D31A87D491009F8247 /* BuildFramework.sh */ = {isa = PBXFileReference; lastKnownFileType = text.script.sh; name = BuildFramework.sh; path = WatchSimKit/BuildFramework.sh; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -155,6 +170,7 @@
 		B54883181A86E792009F8247 = {
 			isa = PBXGroup;
 			children = (
+				B54883D31A87D491009F8247 /* BuildFramework.sh */,
 				B54883231A86E792009F8247 /* WatchSimHarness */,
 				B548837C1A86F32B009F8247 /* WatchSimKit */,
 				B548838B1A86F32B009F8247 /* WatchSimKitTests */,
@@ -272,8 +288,8 @@
 				B54883A91A86F380009F8247 /* WK_InterfaceSeparator.m */,
 				B54883AA1A86F380009F8247 /* WK_InterfaceStatusBar.h */,
 				B54883AB1A86F380009F8247 /* WK_InterfaceStatusBar.m */,
-				B54883AC1A86F380009F8247 /* WKInterfaceController.h */,
-				B54883AD1A86F380009F8247 /* WKInterfaceController.m */,
+				B54883AC1A86F380009F8247 /* WK_InterfaceController.h */,
+				B54883AD1A86F380009F8247 /* WK_InterfaceController.m */,
 			);
 			path = WatchKitClasses;
 			sourceTree = "<group>";
@@ -286,7 +302,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B54883C61A86F380009F8247 /* WK_InterfaceProfile.h in Headers */,
-				B54883C41A86F380009F8247 /* WKInterfaceController.h in Headers */,
+				B54883C41A86F380009F8247 /* WK_InterfaceController.h in Headers */,
 				B54883C81A86F380009F8247 /* WK_StoryboardMunger.h in Headers */,
 				B54883C01A86F380009F8247 /* WK_InterfaceSeparator.h in Headers */,
 				B54883BA1A86F380009F8247 /* WK_InterfaceImage.h in Headers */,
@@ -379,6 +395,9 @@
 						CreatedOnToolsVersion = 6.2;
 						TestTargetID = B54883201A86E792009F8247;
 					};
+					B54883D41A87D4AB009F8247 = {
+						CreatedOnToolsVersion = 6.2;
+					};
 				};
 			};
 			buildConfigurationList = B548831C1A86E792009F8247 /* Build configuration list for PBXProject "WatchSim" */;
@@ -397,6 +416,7 @@
 				B54883201A86E792009F8247 /* WatchSimHarness */,
 				B548837A1A86F32B009F8247 /* WatchSimKit */,
 				B54883841A86F32B009F8247 /* WatchSimKitTests */,
+				B54883D41A87D4AB009F8247 /* Build Combined Framework */,
 			);
 		};
 /* End PBXProject section */
@@ -428,6 +448,22 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		B54883D81A87D4B3009F8247 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = ./WatchSimKit/BuildFramework.sh;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B548831D1A86E792009F8247 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -453,7 +489,7 @@
 				B54883C31A86F380009F8247 /* WK_InterfaceStatusBar.m in Sources */,
 				B54883C11A86F380009F8247 /* WK_InterfaceSeparator.m in Sources */,
 				B54883BB1A86F380009F8247 /* WK_InterfaceImage.m in Sources */,
-				B54883C51A86F380009F8247 /* WKInterfaceController.m in Sources */,
+				B54883C51A86F380009F8247 /* WK_InterfaceController.m in Sources */,
 				B54883CB1A86F380009F8247 /* WKH_ViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -588,6 +624,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
 				INFOPLIST_FILE = "$(SRCROOT)/WatchSimHarness/Rsc/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -598,6 +635,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Distribution";
 				INFOPLIST_FILE = "$(SRCROOT)/WatchSimHarness/Rsc/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -680,6 +718,20 @@
 			};
 			name = Release;
 		};
+		B54883D61A87D4AB009F8247 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		B54883D71A87D4AB009F8247 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -708,6 +760,7 @@
 				B54883961A86F32B009F8247 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		B54883971A86F32B009F8247 /* Build configuration list for PBXNativeTarget "WatchSimKitTests" */ = {
 			isa = XCConfigurationList;
@@ -716,6 +769,16 @@
 				B54883991A86F32B009F8247 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B54883D51A87D4AB009F8247 /* Build configuration list for PBXAggregateTarget "Build Combined Framework" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B54883D61A87D4AB009F8247 /* Debug */,
+				B54883D71A87D4AB009F8247 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

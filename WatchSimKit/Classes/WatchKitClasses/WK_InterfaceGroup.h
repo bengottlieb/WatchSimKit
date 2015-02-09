@@ -14,5 +14,5 @@
 @property (nonatomic) BOOL horizontalLayout;
 
 - (void) loadItems: (NSArray *) items;
-
+- (void) objectChanged: (WK_InterfaceObject *) object;
 @end

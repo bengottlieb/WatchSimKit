@@ -7,12 +7,19 @@
 //
 
 #import "WK_InterfaceImage.h"
-#import "WKInterfaceController.h"
+#import "WK_InterfaceController.h"
+#import "WK_InterfaceGroup.h"
 
 @implementation WK_InterfaceImage
 
 - (void) loadFromDictionary:(NSDictionary *)dict {
+	[super loadFromDictionary: dict];
 	self.backgroundImageName = dict[@"image"];
+}
+
+- (void) setImageNamed: (NSString *) imageName {
+	self.backgroundImageName = imageName;
+	[self.parentGroup objectChanged: self];
 }
 
 - (CGSize) contentSizeInSize: (CGSize) size {

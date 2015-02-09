@@ -7,7 +7,7 @@
 //
 
 #import "WK_StoryboardMunger.h"
-#import "WKInterfaceController.h"
+#import "WK_InterfaceController.h"
 
 @interface WK_StoryboardMunger ()
 @property (nonatomic, strong) NSBundle *bundle;
@@ -15,18 +15,34 @@
 
 @implementation WK_StoryboardMunger
 
-+ (instancetype) mungerWithAppExtensionPath: (NSString *) path {
-	NSBundle		*extBundle = [NSBundle bundleWithPath: path];
-	NSString		*appPath = [extBundle pathForResource: @"WatchedKitHarness WatchKit App" ofType: @"app"];
-	NSBundle		*appBundle = [NSBundle bundleWithPath: appPath];
-	NSString		*plistPath = [appBundle pathForResource: @"Interface" ofType: @"plist"];
++ (instancetype) mungerWithFirstWatchKitExtension {
+	NSURL			*bundleURL = [NSBundle mainBundle].bundleURL;
+	NSURL			*pluginURL = [bundleURL URLByAppendingPathComponent: @"PlugIns"];
+	NSArray			*plugins = [[NSFileManager defaultManager] contentsOfDirectoryAtURL: pluginURL includingPropertiesForKeys: nil options: 0 error: nil];
 	
-	WK_StoryboardMunger		*munger = [self new];
+	for (NSURL *url in plugins) {
+		if ([url.pathExtension isEqual: @"appex"]) return [self mungerWithAppExtensionURL: url];
+	}
+	return nil;
+}
+
++ (instancetype) mungerWithAppExtensionURL: (NSURL *) url {
+	NSArray			*items = [[NSFileManager defaultManager] contentsOfDirectoryAtURL: url includingPropertiesForKeys: nil options: 0 error: nil];
 	
-	munger.storyboardPath = plistPath;
-	munger.bundle = appBundle;
-	return munger;
+	for (NSURL *appPath in items) {
+		if ([appPath.pathExtension isEqual: @"app"]) {
+			NSBundle		*appBundle = [NSBundle bundleWithURL: appPath];
+			NSString		*plistPath = [appBundle pathForResource: @"Interface" ofType: @"plist"];
+			
+			WK_StoryboardMunger		*munger = [self new];
+			
+			munger.storyboardPath = plistPath;
+			munger.bundle = appBundle;
+			return munger;
+		}
+	}
 	
+	return nil;
 }
 
 - (NSDictionary *) extractMainStoryboard {
@@ -37,7 +53,7 @@
 	return dict;
 }
 
-- (WKInterfaceController *) rootController {
+- (WK_InterfaceController *) rootController {
 	NSDictionary			*info = [self extractMainStoryboard];
 	
 	for (NSDictionary *controllerInfo in [info[@"controllers"] allValues]) {
@@ -51,7 +67,7 @@
 		
 		if (class == nil) continue;
 		
-		WKInterfaceController		*controller = [class controllerWithInterfaceDictionary: controllerInfo inBundle: self.bundle];
+		WK_InterfaceController		*controller = [class controllerWithInterfaceDictionary: controllerInfo inBundle: self.bundle];
 		return controller;
 	}
 	
@@ -95,8 +111,8 @@
 	
 	if (NSClassFromString(fullName) != nil) { return fullName; }
 	
-	moduleName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleName"];
-	return [moduleName stringByAppendingFormat: @".%@", className];;
+	moduleName = [[NSBundle mainBundle] objectForInfoDictionaryKey: @"CFBundleExecutable"];
+	return [moduleName stringByAppendingFormat: @".%@", className];
 }
 
 

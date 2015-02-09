@@ -7,7 +7,8 @@
 //
 
 #import "WK_InterfaceButton.h"
-#import "WKInterfaceController.h"
+#import "WK_InterfaceController.h"
+#import "WK_InterfaceGroup.h"
 
 @interface WK_InterfaceButton ()
 @property (nonatomic, strong) UIButton *button;
@@ -41,6 +42,7 @@
 
 - (void) setBackgroundImageNamed: (NSString *) imageName {
 	[self setBackgroundImage: [self.interfaceController imageNamed: imageName]];
+	[self.parentGroup objectChanged: self];
 }
 
 - (UIButton *) button {

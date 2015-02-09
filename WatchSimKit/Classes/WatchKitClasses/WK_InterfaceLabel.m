@@ -7,7 +7,7 @@
 //
 
 #import "WK_InterfaceLabel.h"
-#import "WKInterfaceController.h"
+#import "WK_InterfaceController.h"
 
 @interface WK_InterfaceLabel ()
 @property (nonatomic, strong) UILabel *label;

@@ -7,7 +7,7 @@
 //
 
 #import "WK_InterfaceGroup.h"
-#import "WKInterfaceController.h"
+#import "WK_InterfaceController.h"
 #import "WK_InterfaceStatusBar.h"
 #import "WK_InterfaceSeparator.h"
 
@@ -21,7 +21,6 @@
 
 - (void) loadItems: (NSArray *) items {
 	self.items = items;
-	self.spacing = 2.0;
 	
 	for (UIView *view in self.objects) [view removeFromSuperview];
 	self.objects = [NSMutableArray new];
@@ -41,6 +40,7 @@
 	[super loadFromDictionary: dict];
 	self.horizontalLayout = ![dict[@"layout"] isEqual: @"vertical"];
 	
+	self.spacing = (dict[@"spacing"]) ? [dict[@"spacing"] floatValue] : 2.0;
 	self.cornerRadius = self.parentGroup.isRootGroup ? 6.0 : 0.0;
 	if (dict[@"radius"]) self.cornerRadius = [dict[@"radius"] floatValue];
 	
@@ -120,6 +120,10 @@
 			topLeft.y += frame.size.height + spacing;
 		}
 	}
+}
+
+- (void) objectChanged: (WK_InterfaceObject *) object {
+	[self setNeedsLayout];
 }
 
 @end

@@ -19,13 +19,13 @@ typedef NS_ENUM(NSUInteger, WK_InterfaceObjectType) {
 	WK_InterfaceObjectType_separator
 };
 
-@class WKInterfaceController, WK_InterfaceGroup;
+@class WK_InterfaceController, WK_InterfaceGroup;
 
 @interface WK_InterfaceObject : UIView
 
 + (WK_InterfaceObjectType) typeFromString: (NSString *) string;
-+ (WK_InterfaceObject *) objectWithDictionary: (NSDictionary *) info inController: (WKInterfaceController *) controller;;
-+ (instancetype) createWithDictionary: (NSDictionary *) info inController: (WKInterfaceController *) controller;
++ (WK_InterfaceObject *) objectWithDictionary: (NSDictionary *) info inController: (WK_InterfaceController *) controller;;
++ (instancetype) createWithDictionary: (NSDictionary *) info inController: (WK_InterfaceController *) controller;
 
 - (void) setHidden: (BOOL) hidden;
 - (void) setAlpha: (CGFloat) alpha;
@@ -36,7 +36,7 @@ typedef NS_ENUM(NSUInteger, WK_InterfaceObjectType) {
 
 @property (nonatomic) CGFloat fixedHeight, fixedWidth;
 @property (nonatomic) BOOL fitHeightToContent, fitWidthToContent;
-@property (nonatomic, weak) WKInterfaceController *interfaceController;
+@property (nonatomic, weak) WK_InterfaceController *interfaceController;
 @property (nonatomic, strong) NSDictionary *interfaceDictionary;
 @property (nonatomic, weak) WK_InterfaceGroup *parentGroup;
 @property (nonatomic, strong) UIImageView *backgroundImageView;

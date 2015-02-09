@@ -1,5 +1,5 @@
 //
-//  WKInterfaceController.h
+//  WK_InterfaceController.h
 //  WatchSimKit
 //
 //  Created by Ben Gottlieb on 2/4/15.
@@ -18,7 +18,7 @@ typedef NS_ENUM(NSUInteger, WK_InterfaceSize) {
 
 
 
-@interface WKInterfaceController : UIView
+@interface WK_InterfaceController : UIView
 
 + (instancetype) controllerWithInterfaceDictionary: (NSDictionary *) interface inBundle: (NSBundle *) bundle;
 

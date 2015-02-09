@@ -11,7 +11,7 @@
 #import "WK_InterfaceGroup.h"
 #import "WK_InterfaceButton.h"
 #import "WK_InterfaceSeparator.h"
-#import "WKInterfaceController.h"
+#import "WK_InterfaceController.h"
 #import "WK_InterfaceImage.h"
 
 @implementation WK_InterfaceObject
@@ -26,7 +26,7 @@
 	return WK_InterfaceObjectType_none;
 }
 
-+ (instancetype) createWithDictionary: (NSDictionary *) info inController: (WKInterfaceController *) controller {
++ (instancetype) createWithDictionary: (NSDictionary *) info inController: (WK_InterfaceController *) controller {
 	WK_InterfaceObject		*object = [[self alloc] initWithFrame: CGRectZero];
 	
 	object.interfaceController = controller;
@@ -34,7 +34,7 @@
 	return object;
 }
 
-+ (WK_InterfaceObject *) objectWithDictionary: (NSDictionary *) info inController: (WKInterfaceController *) controller {	
++ (WK_InterfaceObject *) objectWithDictionary: (NSDictionary *) info inController: (WK_InterfaceController *) controller {	
 	switch ([self typeFromString: info[@"type"]]) {
 		case WK_InterfaceObjectType_label: return [WK_InterfaceLabel createWithDictionary: info inController: controller];
 		case WK_InterfaceObjectType_group: return [WK_InterfaceGroup createWithDictionary: info inController: controller];

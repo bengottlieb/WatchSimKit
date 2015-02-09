@@ -1,25 +1,25 @@
 //
-//  WKInterfaceController.m
+//  WK_InterfaceController.m
 //  WatchSimKit
 //
 //  Created by Ben Gottlieb on 2/4/15.
 //  Copyright (c) 2015 Stand Alone, inc. All rights reserved.
 //
 
-#import "WKInterfaceController.h"
+#import "WK_InterfaceController.h"
 #import "WK_InterfaceGroup.h"
 #import "WK_InterfaceProfile.h"
 
-@interface WKInterfaceController ()
+@interface WK_InterfaceController ()
 @property (nonatomic, strong) WK_InterfaceProfile *profile42, *profile38;
 @property (nonatomic, strong) WK_InterfaceGroup *rootGroup;
 @property (nonatomic, strong) NSBundle *bundle;
 @end
 
-@implementation WKInterfaceController
+@implementation WK_InterfaceController
 
 + (instancetype) controllerWithInterfaceDictionary: (NSDictionary *) interface inBundle: (NSBundle *) bundle {
-	WKInterfaceController			*controller = [[self alloc] initWithFrame: CGRectZero];
+	WK_InterfaceController			*controller = [[self alloc] initWithFrame: CGRectZero];
 	
 	controller.bundle = bundle;
 	controller.layer.borderWidth = 0.5;
@@ -70,7 +70,7 @@
 	_interfaceSize = interfaceSize;
 	
 	WK_InterfaceProfile	*profile = interfaceSize == WK_InterfaceSize_42mm ? self.profile42 : self.profile38;
-	CGRect			frame = [WKInterfaceController boundsForSize: interfaceSize];
+	CGRect			frame = [WK_InterfaceController boundsForSize: interfaceSize];
 	
 	frame.size.width *= self.scalingFactor;
 	frame.size.height *= self.scalingFactor;
@@ -80,6 +80,9 @@
 	NSLog(@"42: %@", profile.items);
 	[self.rootGroup loadItems: interfaceSize == WK_InterfaceSize_42mm ? profile.items : profile.items];
 	self.rootGroup.backgroundImageName = profile.imageName;
+
+	[self awakeWithContext: nil];
+	[self willActivate];
 }
 
 - (UIImage *) imageNamed: (NSString *) name {
