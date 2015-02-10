@@ -28,8 +28,6 @@
 		B548834F1A86ED38009F8247 /* WS_AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B548834C1A86ED38009F8247 /* WS_AppDelegate.m */; };
 		B54883501A86ED38009F8247 /* WS_ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B548834E1A86ED38009F8247 /* WS_ViewController.m */; };
 		B54883801A86F32B009F8247 /* WatchSimKit.h in Headers */ = {isa = PBXBuildFile; fileRef = B548837F1A86F32B009F8247 /* WatchSimKit.h */; settings = {ATTRIBUTES = (Public, ); }; };
-		B54883861A86F32B009F8247 /* WatchSimKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B548837B1A86F32B009F8247 /* WatchSimKit.framework */; };
-		B548838F1A86F32B009F8247 /* WatchSimKitTests.m in Sources */ = {isa = PBXBuildFile; fileRef = B548838E1A86F32B009F8247 /* WatchSimKitTests.m */; };
 		B54883921A86F32B009F8247 /* WatchSimKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B548837B1A86F32B009F8247 /* WatchSimKit.framework */; };
 		B54883931A86F32B009F8247 /* WatchSimKit.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = B548837B1A86F32B009F8247 /* WatchSimKit.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		B54883B41A86F380009F8247 /* UIColor+Additions.h in Headers */ = {isa = PBXBuildFile; fileRef = B548839B1A86F380009F8247 /* UIColor+Additions.h */; };
@@ -61,20 +59,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		B54883871A86F32B009F8247 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B54883191A86E792009F8247 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B548837A1A86F32B009F8247;
-			remoteInfo = WatchSimKit;
-		};
-		B54883891A86F32B009F8247 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = B54883191A86E792009F8247 /* Project object */;
-			proxyType = 1;
-			remoteGlobalIDString = B54883201A86E792009F8247;
-			remoteInfo = WatchSimHarness;
-		};
 		B54883901A86F32B009F8247 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = B54883191A86E792009F8247 /* Project object */;
@@ -99,7 +83,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		B54883211A86E792009F8247 /* WatchSimHarness.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchSimHarness.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B54883211A86E792009F8247 /* WatchSim.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WatchSim.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		B54883251A86E792009F8247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = Info.plist; path = Rsc/Info.plist; sourceTree = "<group>"; };
 		B54883261A86E792009F8247 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Src/main.m; sourceTree = "<group>"; };
 		B548832F1A86E792009F8247 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -112,9 +96,6 @@
 		B548837B1A86F32B009F8247 /* WatchSimKit.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = WatchSimKit.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B548837E1A86F32B009F8247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		B548837F1A86F32B009F8247 /* WatchSimKit.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = WatchSimKit.h; sourceTree = "<group>"; };
-		B54883851A86F32B009F8247 /* WatchSimKitTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = WatchSimKitTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
-		B548838D1A86F32B009F8247 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		B548838E1A86F32B009F8247 /* WatchSimKitTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = WatchSimKitTests.m; sourceTree = "<group>"; };
 		B548839B1A86F380009F8247 /* UIColor+Additions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIColor+Additions.h"; sourceTree = "<group>"; };
 		B548839C1A86F380009F8247 /* UIColor+Additions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIColor+Additions.m"; sourceTree = "<group>"; };
 		B548839E1A86F380009F8247 /* WK_InterfaceButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WK_InterfaceButton.h; sourceTree = "<group>"; };
@@ -160,14 +141,6 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B54883821A86F32B009F8247 /* Frameworks */ = {
-			isa = PBXFrameworksBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B54883861A86F32B009F8247 /* WatchSimKit.framework in Frameworks */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -175,9 +148,8 @@
 			isa = PBXGroup;
 			children = (
 				B54883D31A87D491009F8247 /* BuildFramework.sh */,
-				B54883231A86E792009F8247 /* WatchSimHarness */,
+				B54883231A86E792009F8247 /* WatchSimKit/WatchSimHarness */,
 				B548837C1A86F32B009F8247 /* WatchSimKit */,
-				B548838B1A86F32B009F8247 /* WatchSimKitTests */,
 				B54883221A86E792009F8247 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -185,14 +157,13 @@
 		B54883221A86E792009F8247 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				B54883211A86E792009F8247 /* WatchSimHarness.app */,
+				B54883211A86E792009F8247 /* WatchSim.app */,
 				B548837B1A86F32B009F8247 /* WatchSimKit.framework */,
-				B54883851A86F32B009F8247 /* WatchSimKitTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
 		};
-		B54883231A86E792009F8247 /* WatchSimHarness */ = {
+		B54883231A86E792009F8247 /* WatchSimKit/WatchSimHarness */ = {
 			isa = PBXGroup;
 			children = (
 				B548834A1A86ED38009F8247 /* Classes */,
@@ -201,7 +172,7 @@
 				B54883331A86E792009F8247 /* LaunchScreen.xib */,
 				B54883241A86E792009F8247 /* Supporting Files */,
 			);
-			path = WatchSimHarness;
+			path = WatchSimKit/WatchSimHarness;
 			sourceTree = "<group>";
 		};
 		B54883241A86E792009F8247 /* Supporting Files */ = {
@@ -242,23 +213,6 @@
 			isa = PBXGroup;
 			children = (
 				B548837E1A86F32B009F8247 /* Info.plist */,
-			);
-			name = "Supporting Files";
-			sourceTree = "<group>";
-		};
-		B548838B1A86F32B009F8247 /* WatchSimKitTests */ = {
-			isa = PBXGroup;
-			children = (
-				B548838E1A86F32B009F8247 /* WatchSimKitTests.m */,
-				B548838C1A86F32B009F8247 /* Supporting Files */,
-			);
-			path = WatchSimKitTests;
-			sourceTree = "<group>";
-		};
-		B548838C1A86F32B009F8247 /* Supporting Files */ = {
-			isa = PBXGroup;
-			children = (
-				B548838D1A86F32B009F8247 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -342,7 +296,7 @@
 			);
 			name = WatchSimHarness;
 			productName = WatchSimHarness;
-			productReference = B54883211A86E792009F8247 /* WatchSimHarness.app */;
+			productReference = B54883211A86E792009F8247 /* WatchSim.app */;
 			productType = "com.apple.product-type.application";
 		};
 		B548837A1A86F32B009F8247 /* WatchSimKit */ = {
@@ -363,25 +317,6 @@
 			productReference = B548837B1A86F32B009F8247 /* WatchSimKit.framework */;
 			productType = "com.apple.product-type.framework";
 		};
-		B54883841A86F32B009F8247 /* WatchSimKitTests */ = {
-			isa = PBXNativeTarget;
-			buildConfigurationList = B54883971A86F32B009F8247 /* Build configuration list for PBXNativeTarget "WatchSimKitTests" */;
-			buildPhases = (
-				B54883811A86F32B009F8247 /* Sources */,
-				B54883821A86F32B009F8247 /* Frameworks */,
-				B54883831A86F32B009F8247 /* Resources */,
-			);
-			buildRules = (
-			);
-			dependencies = (
-				B54883881A86F32B009F8247 /* PBXTargetDependency */,
-				B548838A1A86F32B009F8247 /* PBXTargetDependency */,
-			);
-			name = WatchSimKitTests;
-			productName = WatchSimKitTests;
-			productReference = B54883851A86F32B009F8247 /* WatchSimKitTests.xctest */;
-			productType = "com.apple.product-type.bundle.unit-test";
-		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -396,10 +331,6 @@
 					};
 					B548837A1A86F32B009F8247 = {
 						CreatedOnToolsVersion = 6.2;
-					};
-					B54883841A86F32B009F8247 = {
-						CreatedOnToolsVersion = 6.2;
-						TestTargetID = B54883201A86E792009F8247;
 					};
 					B54883D41A87D4AB009F8247 = {
 						CreatedOnToolsVersion = 6.2;
@@ -421,7 +352,6 @@
 			targets = (
 				B54883201A86E792009F8247 /* WatchSimHarness */,
 				B548837A1A86F32B009F8247 /* WatchSimKit */,
-				B54883841A86F32B009F8247 /* WatchSimKitTests */,
 				B54883D41A87D4AB009F8247 /* Build Combined Framework */,
 			);
 		};
@@ -444,13 +374,6 @@
 			files = (
 				B5CA71A91A8AA2FF0038C484 /* WK_SimViewController.xib in Resources */,
 				B5CA71A81A8AA2CC0038C484 /* WatchKit.xcassets in Resources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
-		B54883831A86F32B009F8247 /* Resources */ = {
-			isa = PBXResourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -502,27 +425,9 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		B54883811A86F32B009F8247 /* Sources */ = {
-			isa = PBXSourcesBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-				B548838F1A86F32B009F8247 /* WatchSimKitTests.m in Sources */,
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		B54883881A86F32B009F8247 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B548837A1A86F32B009F8247 /* WatchSimKit */;
-			targetProxy = B54883871A86F32B009F8247 /* PBXContainerItemProxy */;
-		};
-		B548838A1A86F32B009F8247 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			target = B54883201A86E792009F8247 /* WatchSimHarness */;
-			targetProxy = B54883891A86F32B009F8247 /* PBXContainerItemProxy */;
-		};
 		B54883911A86F32B009F8247 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = B548837A1A86F32B009F8247 /* WatchSimKit */;
@@ -638,9 +543,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
-				INFOPLIST_FILE = "$(SRCROOT)/WatchSimHarness/Rsc/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/WatchSimKit/WatchSimHarness/Rsc/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WatchSim;
 			};
 			name = Debug;
 		};
@@ -649,9 +554,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution";
-				INFOPLIST_FILE = "$(SRCROOT)/WatchSimHarness/Rsc/Info.plist";
+				INFOPLIST_FILE = "$(SRCROOT)/WatchSimKit/WatchSimHarness/Rsc/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
+				PRODUCT_NAME = WatchSim;
 			};
 			name = Release;
 		};
@@ -703,38 +608,6 @@
 			};
 			name = Release;
 		};
-		B54883981A86F32B009F8247 /* Debug */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				GCC_PREPROCESSOR_DEFINITIONS = (
-					"DEBUG=1",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = WatchSimKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchSimHarness.app/WatchSimHarness";
-			};
-			name = Debug;
-		};
-		B54883991A86F32B009F8247 /* Release */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				FRAMEWORK_SEARCH_PATHS = (
-					"$(SDKROOT)/Developer/Library/Frameworks",
-					"$(inherited)",
-				);
-				INFOPLIST_FILE = WatchSimKitTests/Info.plist;
-				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @loader_path/Frameworks";
-				PRODUCT_NAME = "$(TARGET_NAME)";
-				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/WatchSimHarness.app/WatchSimHarness";
-			};
-			name = Release;
-		};
 		B54883D61A87D4AB009F8247 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -775,15 +648,6 @@
 			buildConfigurations = (
 				B54883951A86F32B009F8247 /* Debug */,
 				B54883961A86F32B009F8247 /* Release */,
-			);
-			defaultConfigurationIsVisible = 0;
-			defaultConfigurationName = Release;
-		};
-		B54883971A86F32B009F8247 /* Build configuration list for PBXNativeTarget "WatchSimKitTests" */ = {
-			isa = XCConfigurationList;
-			buildConfigurations = (
-				B54883981A86F32B009F8247 /* Debug */,
-				B54883991A86F32B009F8247 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
