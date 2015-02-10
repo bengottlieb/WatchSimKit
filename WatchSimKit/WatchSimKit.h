@@ -19,3 +19,4 @@ FOUNDATION_EXPORT const unsigned char WatchSimKitVersionString[];
 
 #import <WatchSimKit/WK_InterfaceController.h>
 #import <WatchSimKit/WK_StoryboardMunger.h>
+#import <WatchSimKit/WK_SimViewController.h>
