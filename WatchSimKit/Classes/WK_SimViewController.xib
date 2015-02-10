@@ -21,19 +21,60 @@
                 </imageView>
                 <view clipsSubviews="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="mBm-fJ-uQl">
                     <rect key="frame" x="222" y="202" width="156" height="195"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text="No Watch Kit App Found" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="e7V-CN-vN1">
+                            <rect key="frame" x="40" y="29" width="76" height="138"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="1" green="0.4950413097716313" blue="0.11186471336254988" alpha="1" colorSpace="calibratedRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                    </subviews>
+                    <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
                     <constraints>
                         <constraint firstAttribute="width" constant="156" id="Gur-rQ-m8v"/>
                         <constraint firstAttribute="height" constant="195" id="c5l-aG-BG6"/>
                     </constraints>
                 </view>
+                <navigationBar contentMode="scaleToFill" barStyle="black" translucent="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uHf-8u-YDI">
+                    <rect key="frame" x="0.0" y="0.0" width="600" height="44"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="44" id="eoP-wJ-jSR"/>
+                    </constraints>
+                    <items>
+                        <navigationItem id="ZNg-9a-f5C">
+                            <barButtonItem key="rightBarButtonItem" style="done" systemItem="done" id="qgp-Jh-EPN">
+                                <connections>
+                                    <action selector="doneButtonTouched:" destination="-1" id="UGC-jT-qe7"/>
+                                </connections>
+                            </barButtonItem>
+                        </navigationItem>
+                    </items>
+                </navigationBar>
+                <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5Ti-3H-s0w">
+                    <rect key="frame" x="562" y="562" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="NnD-JB-EAd"/>
+                        <constraint firstAttribute="height" constant="30" id="nHx-6H-VzU"/>
+                    </constraints>
+                    <state key="normal" title="2x">
+                        <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                    </state>
+                    <connections>
+                        <action selector="scaleButtonTouched:" destination="-1" eventType="touchUpInside" id="WY8-Xa-4nR"/>
+                    </connections>
+                </button>
             </subviews>
             <color key="backgroundColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
             <constraints>
                 <constraint firstItem="mBm-fJ-uQl" firstAttribute="centerX" secondItem="U5C-nw-RJU" secondAttribute="centerX" constant="-0.5" id="Cjt-Qn-QbC"/>
                 <constraint firstItem="mBm-fJ-uQl" firstAttribute="centerY" secondItem="U5C-nw-RJU" secondAttribute="centerY" id="DWF-BM-Hcp"/>
+                <constraint firstAttribute="trailing" secondItem="uHf-8u-YDI" secondAttribute="trailing" id="DnE-oZ-I8a"/>
                 <constraint firstAttribute="centerX" secondItem="U5C-nw-RJU" secondAttribute="centerX" id="ZAB-Zb-GpF"/>
+                <constraint firstAttribute="trailing" secondItem="5Ti-3H-s0w" secondAttribute="trailing" constant="8" id="bDm-nf-ofe"/>
                 <constraint firstAttribute="centerY" secondItem="U5C-nw-RJU" secondAttribute="centerY" id="fPn-Ic-RNS"/>
+                <constraint firstAttribute="bottom" secondItem="5Ti-3H-s0w" secondAttribute="bottom" constant="8" id="t1c-vr-Mdi"/>
+                <constraint firstItem="uHf-8u-YDI" firstAttribute="top" secondItem="i5M-Pr-FkT" secondAttribute="top" id="tyG-4j-3wa"/>
+                <constraint firstItem="uHf-8u-YDI" firstAttribute="leading" secondItem="i5M-Pr-FkT" secondAttribute="leading" id="zok-ux-nK2"/>
             </constraints>
         </view>
     </objects>

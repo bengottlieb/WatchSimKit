@@ -14,6 +14,8 @@
 @property (nonatomic, weak) IBOutlet UIImageView *watchImageView;
 @property (nonatomic, weak) IBOutlet UIView *watchDisplayView;
 @property (nonatomic, strong) WK_InterfaceController *watchInterface;
+@property (nonatomic, weak) IBOutlet UIButton *scaleButton, *doneButton;
+@property (nonatomic) CGFloat scale;
 @end
 
 @implementation WK_SimViewController
@@ -21,38 +23,32 @@
 + (instancetype) simController {
 	WK_StoryboardMunger		*munger = [WK_StoryboardMunger mungerWithFirstWatchKitExtension];
 	WK_InterfaceController	*interface = munger.rootController;
+	WK_SimViewController	*controller = [[self alloc] initWithNibName: NSStringFromClass(self) bundle: [NSBundle bundleForClass: [self class]]];
 	
-	if (interface != nil) {
-		WK_SimViewController		*controller = [[self alloc] initWithNibName: NSStringFromClass(self) bundle: [NSBundle bundleForClass: [self class]]];
-		
-		controller.watchInterface = interface;
-		return controller;
-	}
-	return nil;
+	controller.watchInterface = interface;
+	controller.scale = 1.0;
+	return controller;
 }
 
-- (void)viewDidLoad {
+- (void) viewDidLoad {
     [super viewDidLoad];
 	
 	self.watchInterface.frame = self.watchDisplayView.bounds;
 	[self.watchDisplayView addSubview: self.watchInterface];
 	self.watchInterface.interfaceSize = WK_InterfaceSize_42mm;
-    // Do any additional setup after loading the view from its nib.
 }
 
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+- (IBAction) scaleButtonTouched: (UIButton *) sender {
+	[sender setTitle: [NSString stringWithFormat: @"%.0fx", self.scale] forState: UIControlStateNormal];
+
+	self.scale = (self.scale == 1.0) ? 2.0 : 1.0;
+	
+	self.watchImageView.transform = CGAffineTransformMakeScale(self.scale, self.scale);
+	self.watchDisplayView.transform = CGAffineTransformMakeScale(self.scale, self.scale);
+	
 }
 
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+- (IBAction) doneButtonTouched: (UIButton *) sender {
+	[self dismissViewControllerAnimated: true completion: nil];
 }
-*/
-
 @end

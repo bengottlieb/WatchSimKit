@@ -7,6 +7,7 @@
 //
 
 #import "WS_ViewController.h"
+#import <WatchSimKit/WatchSimKit.h>
 
 @interface WS_ViewController ()
 
@@ -14,14 +15,10 @@
 
 @implementation WS_ViewController
 
-- (void)viewDidLoad {
-	[super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-}
-
-- (void)didReceiveMemoryWarning {
-	[super didReceiveMemoryWarning];
-	// Dispose of any resources that can be recreated.
+- (void) viewDidAppear: (BOOL) animated {
+	[super viewDidAppear: animated];
+	
+	[self presentViewController: [WK_SimViewController simController] animated: true completion: nil];
 }
 
 @end
