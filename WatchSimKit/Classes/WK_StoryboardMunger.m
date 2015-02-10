@@ -21,7 +21,7 @@
 	NSArray			*plugins = [[NSFileManager defaultManager] contentsOfDirectoryAtURL: pluginURL includingPropertiesForKeys: nil options: 0 error: nil];
 	
 	for (NSURL *url in plugins) {
-		if ([url.pathExtension isEqual: @"appex"]) return [self mungerWithAppExtensionURL: url];
+		if ([url.pathExtension isEqual: @"app"]) return [self mungerWithAppExtensionURL: url];
 	}
 	return nil;
 }
@@ -31,18 +31,22 @@
 	
 	for (NSURL *appPath in items) {
 		if ([appPath.pathExtension isEqual: @"app"]) {
-			NSBundle		*appBundle = [NSBundle bundleWithURL: appPath];
-			NSString		*plistPath = [appBundle pathForResource: @"Interface" ofType: @"plist"];
-			
-			WK_StoryboardMunger		*munger = [self new];
-			
-			munger.storyboardPath = plistPath;
-			munger.bundle = appBundle;
-			return munger;
+			return [[self alloc] initWithURL: appPath];
 		}
 	}
-	
-	return nil;
+
+	return [[self alloc] initWithURL: url];
+}
+
+- (id) initWithURL: (NSURL *) url {
+	if (self = [super init]) {
+		NSBundle		*appBundle = [NSBundle bundleWithURL: url];
+		NSString		*plistPath = [appBundle pathForResource: @"Interface" ofType: @"plist"];
+		
+		self.storyboardPath = plistPath;
+		self.bundle = appBundle;
+	}
+	return self;
 }
 
 - (NSDictionary *) extractMainStoryboard {
