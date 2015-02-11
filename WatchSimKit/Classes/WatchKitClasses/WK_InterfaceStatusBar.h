@@ -7,7 +7,11 @@
 //
 
 #import "WK_InterfaceObject.h"
+#import "WK_NavigationController.h"
 
 @interface WK_InterfaceStatusBar : WK_InterfaceObject
-+ (instancetype) statusBar;
++ (instancetype) statusBarInNavigationController: (WK_NavigationController *) nav;
+
+@property (nonatomic) BOOL showBackButton;
+
 @end

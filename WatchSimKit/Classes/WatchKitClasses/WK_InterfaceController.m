@@ -118,8 +118,7 @@
 }
 
 - (UIImage *) imageNamed: (NSString *) name {
-	if (name.length == 0) return nil;
-	return [UIImage imageNamed: name inBundle: self.navigationController.storyboard.bundle compatibleWithTraitCollection: nil];
+	return [self.navigationController imageNamed: name];
 }
 
 

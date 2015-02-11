@@ -30,5 +30,6 @@ typedef NS_ENUM(NSUInteger, WK_InterfaceSize) {
 - (void) popController;
 - (void) popToRootController;
 
+- (UIImage *) imageNamed: (NSString *) name;
 
 @end

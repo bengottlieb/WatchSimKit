@@ -34,7 +34,7 @@
 		swipe.direction = UISwipeGestureRecognizerDirectionRight;
 		[self addGestureRecognizer: swipe];
 
-		self.statusBar = [WK_InterfaceStatusBar statusBar];
+		self.statusBar = [WK_InterfaceStatusBar statusBarInNavigationController: self];
 		[self addSubview: self.statusBar];
 	}
 	return self;
@@ -79,6 +79,10 @@
 	self.statusBar.frame = CGRectMake(0, 0, self.bounds.size.width, 20);
 }
 
+- (UIImage *) imageNamed: (NSString *) name {
+	if (name.length == 0) return nil;
+	return [UIImage imageNamed: name inBundle: self.storyboard.bundle compatibleWithTraitCollection: nil];
+}
 
 //================================================================================================================
 #pragma mark Navigation
@@ -87,6 +91,7 @@
 	WK_InterfaceController		*next = [self.storyboard controllerWithIdentifier: name];
 	CGPoint						center = CGPointMake(CGRectGetMidX(self.contentFrame), CGRectGetMidY(self.contentFrame));
 	
+	self.statusBar.showBackButton = true;
 	if (next == nil) {
 		NSLog(@"Couldn't find a controller matching identifier: %@", name);
 		return;
@@ -124,6 +129,7 @@
 - (void) popToController: (WK_InterfaceController *) next {
 	CGPoint						center = CGPointMake(CGRectGetMidX(self.contentFrame), CGRectGetMidY(self.contentFrame));
 	
+	self.statusBar.showBackButton = (next != self.rootViewController);
 	next.center = CGPointMake(self.contentFrame.size.width * -0.5, self.contentFrame.size.height * 0.5);
 	[self insertSubview: next belowSubview: self.topController];
 	next.alpha = 0.0;
@@ -136,7 +142,6 @@
 	} completion: ^(BOOL finished) {
 		[self.topController removeFromSuperview];
 		while (self.controllers.count && self.controllers.lastObject != next) [self.controllers removeObject: self.controllers.lastObject];
-		[self.controllers removeObject: self.controllers.lastObject];
 		self.topController = next;
 	}];
 }
