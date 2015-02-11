@@ -5,10 +5,10 @@
         <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
     </dependencies>
     <scenes>
-        <!--Interface Controller-->
+        <!--first-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WatchSim">
+                <controller identifier="first" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WatchSim">
                     <items>
                         <button width="1" alignment="left" title="Button" id="A1a-px-xFa">
                             <connections>
@@ -19,10 +19,10 @@
                 </controller>
             </objects>
         </scene>
-        <!--Second Controller-->
+        <!--second-->
         <scene sceneID="z3R-Dp-caI">
             <objects>
-                <controller id="xGH-yd-a5a" customClass="SecondController" customModule="WatchSim">
+                <controller identifier="second" id="xGH-yd-a5a" customClass="SecondController" customModule="WatchSim">
                     <items>
                         <button width="1" alignment="left" title="Button" id="Yev-VO-wWt"/>
                         <button width="1" alignment="left" title="Button" id="alK-ba-5wN"/>

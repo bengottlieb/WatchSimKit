@@ -7,29 +7,36 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "WK_NavigationController.h"
 
-@class WK_InterfaceGroup;
-
-typedef NS_ENUM(NSUInteger, WK_InterfaceSize) {
-	WK_InterfaceSize_none,
-	WK_InterfaceSize_38mm,
-	WK_InterfaceSize_42mm
-};
-
-
+@class WK_InterfaceGroup, WK_NavigationController;
 
 @interface WK_InterfaceController : UIView
 
-+ (instancetype) controllerWithInterfaceDictionary: (NSDictionary *) interface inBundle: (NSBundle *) bundle;
++ (instancetype) controllerWithIdentifier: (NSString *) ident andInterfaceDictionary: (NSDictionary *) interface inNavigationController: (WK_NavigationController *) nav;
++ (CGRect) boundsForSize: (WK_InterfaceSize) size;
 
 - (UIImage *) imageNamed: (NSString *) name;
 
 @property (nonatomic) WK_InterfaceSize interfaceSize;
+@property (nonatomic, strong) NSString *identifier;
 @property (nonatomic) CGFloat scalingFactor;
 @property (nonatomic, readonly) WK_InterfaceGroup *rootGroup;
+@property (nonatomic) BOOL isRoot;
+@property (nonatomic, readonly) WK_NavigationController *navigationController;
+@property (nonatomic, readonly) WK_InterfaceController *rootController, *parentController;
 
 - (void) awakeWithContext: (id) context;
 - (void) willActivate;
 - (void) didDeactivate;
+
+- (void) pushControllerWithName: (NSString *) name context: (id) context;
+- (void) popController;
+- (void) popToRootController;
+
+- (void)presentControllerWithName:(NSString *)name context:(id)context; // modal presentation
+- (void)dismissController;
+
+- (id) contextForSegueWithIdentifier: (NSString *) segueIdentifier;
 
 @end

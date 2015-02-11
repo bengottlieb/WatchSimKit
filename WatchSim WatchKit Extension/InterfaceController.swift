@@ -9,8 +9,15 @@
 import WatchKit
 import Foundation
 
+#if WATCH_SIM
+	import WatchSimKit
+	typealias WKInterfaceParent = WK_InterfaceController
+	#else
+	typealias WKInterfaceParent = WKInterfaceController
+#endif
 
-class InterfaceController: WKInterfaceController {
+
+class InterfaceController: WKInterfaceParent {
 
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -28,4 +35,8 @@ class InterfaceController: WKInterfaceController {
         super.didDeactivate()
     }
 
+	
+	override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
+		return ""
+	}
 }

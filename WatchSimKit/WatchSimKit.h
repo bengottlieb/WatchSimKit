@@ -17,6 +17,7 @@ FOUNDATION_EXPORT const unsigned char WatchSimKitVersionString[];
 // In this header, you should import all the public headers of your framework using statements like #import <WatchSimKit/PublicHeader.h>
 
 
+#import <WatchSimKit/WK_NavigationController.h>
 #import <WatchSimKit/WK_InterfaceController.h>
-#import <WatchSimKit/WK_StoryboardMunger.h>
+#import <WatchSimKit/WK_Storyboard.h>
 #import <WatchSimKit/WK_SimViewController.h>

@@ -54,9 +54,18 @@
 		_button.showsTouchWhenHighlighted = true;
 		_button.titleLabel.font = [UIFont systemFontOfSize: 14];
 		_button.backgroundColor = [UIColor colorWithWhite: 0.9 alpha: 0.2];
+		[_button addTarget: self action: @selector(buttonPressed:) forControlEvents: UIControlEventTouchUpInside];
 		[self addSubview: _button];
 	}
 	return _button;
+}
+
+- (void) buttonPressed: (UIButton *) sender {
+	if (self.interfaceDictionary[@"action"]) {
+		[self.button addTarget: self.interfaceController action: NSSelectorFromString(self.interfaceDictionary[@"action"]) forControlEvents:UIControlEventTouchUpInside];
+	} else if (self.interfaceDictionary[@"segue"]) {
+		[self.interfaceController pushControllerWithName: self.interfaceDictionary[@"segue"][@"destination"] context: nil];
+	}
 }
 
 - (CGSize) contentSizeInSize: (CGSize) size {
@@ -74,10 +83,6 @@
 
 - (void) loadFromDictionary: (NSDictionary *) dict {
 	[super loadFromDictionary: dict];
-	
-	if (dict[@"action"]) {
-		[self.button addTarget: self.interfaceController action: NSSelectorFromString(dict[@"action"]) forControlEvents:UIControlEventTouchUpInside];
-	}
 	
 	self.layer.cornerRadius = 6.0;
 	self.layer.masksToBounds = true;

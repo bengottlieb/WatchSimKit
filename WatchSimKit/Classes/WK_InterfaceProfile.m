@@ -21,13 +21,14 @@
 + (instancetype) interfaceFromDictionary: (NSDictionary *) dict ofType: (NSString *) type {
 	WK_InterfaceProfile			*profile = [WK_InterfaceProfile new];
 	
-	if (dict[@"items"] != nil) dict = dict[@"items"];
+	
+	
 	profile.items = @[];
 	
 	NSString			*imageKey = [NSString stringWithFormat: @"image-%@", type];
 	NSString			*itemsKey = [NSString stringWithFormat: @"items-%@", type];
 	
-	for (NSDictionary *itemDict in dict) {
+	for (NSDictionary *itemDict in dict[@"items"]) {
 		if (itemDict[@"type"] != nil) {
 			profile.items = [profile.items arrayByAddingObject: itemDict];
 			continue;

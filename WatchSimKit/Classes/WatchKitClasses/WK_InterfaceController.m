@@ -9,23 +9,25 @@
 #import "WK_InterfaceController.h"
 #import "WK_InterfaceGroup.h"
 #import "WK_InterfaceProfile.h"
+#import "WK_Storyboard.h"
+#import "WK_NavigationController.h"
 
 @interface WK_InterfaceController ()
 @property (nonatomic, strong) WK_InterfaceProfile *profile42, *profile38;
 @property (nonatomic, strong) WK_InterfaceGroup *rootGroup;
-@property (nonatomic, strong) NSBundle *bundle;
+@property (nonatomic, strong) WK_NavigationController *navigationController;
+@property (nonatomic, strong) WK_InterfaceController *parentController;
+
 @end
 
 @implementation WK_InterfaceController
 
-+ (instancetype) controllerWithInterfaceDictionary: (NSDictionary *) interface inBundle: (NSBundle *) bundle {
++ (instancetype) controllerWithIdentifier: (NSString *) ident andInterfaceDictionary: (NSDictionary *) interface inNavigationController: (WK_NavigationController *) nav {
 	WK_InterfaceController			*controller = [[self alloc] initWithFrame: CGRectZero];
 	
-	controller.bundle = bundle;
-	controller.layer.borderWidth = 0.5;
-	controller.layer.borderColor = [UIColor lightGrayColor].CGColor;
-	controller.backgroundColor = [UIColor blackColor];
+	controller.navigationController = nav;
 	controller.scalingFactor = 1.0;
+	controller.identifier = ident;
 	controller.profile42 = [WK_InterfaceProfile regularInterfaceFromDictionary: interface];
 	controller.profile38 = [WK_InterfaceProfile compactInterfaceFromDictionary: interface];
 	
@@ -53,6 +55,31 @@
 }
 
 //================================================================================================================
+#pragma mark Navigation
+- (void) pushControllerWithName: (NSString *) name context: (id) context {
+	[self.navigationController pushControllerWithName: name context: context];
+}
+
+- (void) popController {
+	[self.navigationController popController];
+}
+
+- (void) popToRootController {
+	[self.navigationController popToRootController];
+}
+
+- (void)presentControllerWithName:(NSString *)name context:(id)context {
+	
+}
+
+- (void)dismissController {
+	
+}
+
+- (id) contextForSegueWithIdentifier: (NSString *) segueIdentifier { return nil; }
+
+
+//================================================================================================================
 #pragma mark Properties
 
 - (WK_InterfaceGroup *) rootGroup {
@@ -66,6 +93,8 @@
 }
 
 - (void) setInterfaceSize: (WK_InterfaceSize) interfaceSize {
+	if (interfaceSize == WK_InterfaceSize_none) return;
+	
 	if (self.interfaceSize != WK_InterfaceSize_none) [self didDeactivate];
 	_interfaceSize = interfaceSize;
 	
@@ -74,6 +103,9 @@
 	
 	frame.size.width *= self.scalingFactor;
 	frame.size.height *= self.scalingFactor;
+	
+	[self.rootGroup removeFromSuperview];
+	self.rootGroup = nil;
 	
 	self.bounds = frame;
 	
@@ -87,7 +119,7 @@
 
 - (UIImage *) imageNamed: (NSString *) name {
 	if (name.length == 0) return nil;
-	return [UIImage imageNamed: name inBundle: self.bundle compatibleWithTraitCollection: nil];
+	return [UIImage imageNamed: name inBundle: self.navigationController.storyboard.bundle compatibleWithTraitCollection: nil];
 }
 
 

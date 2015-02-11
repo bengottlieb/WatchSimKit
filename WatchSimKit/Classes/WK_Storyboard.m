@@ -6,16 +6,18 @@
 //  Copyright (c) 2015 Stand Alone, inc. All rights reserved.
 //
 
-#import "WK_StoryboardMunger.h"
+#import "WK_Storyboard.h"
 #import "WK_InterfaceController.h"
+#import "WK_NavigationController.h"
 
-@interface WK_StoryboardMunger ()
+@interface WK_Storyboard ()
 @property (nonatomic, strong) NSBundle *bundle;
+@property (nonatomic, strong) NSDictionary *allControllers;
 @end
 
-@implementation WK_StoryboardMunger
+@implementation WK_Storyboard
 
-+ (instancetype) mungerWithFirstWatchKitExtension {
++ (instancetype) storyboardWithFirstWatchKitExtension {
 	NSURL			*bundleURL = [NSBundle mainBundle].bundleURL;
 	NSURL			*pluginURL = [bundleURL URLByAppendingPathComponent: @"PlugIns"];
 	NSArray			*plugins = [[NSFileManager defaultManager] contentsOfDirectoryAtURL: pluginURL includingPropertiesForKeys: nil options: 0 error: nil];
@@ -57,25 +59,50 @@
 	return dict;
 }
 
-- (WK_InterfaceController *) rootController {
-	NSDictionary			*info = [self extractMainStoryboard];
+- (NSDictionary *) allControllers {
+	if (_allControllers == nil) {
+		NSMutableDictionary		*controllers = [NSMutableDictionary new];
+		NSDictionary			*info = [self extractMainStoryboard];
 	
-	for (NSDictionary *controllerInfo in [info[@"controllers"] allValues]) {
-		NSString		*className = controllerInfo[@"controllerClass"];
-		Class			class = NSClassFromString(className);
+		for (NSString *key in info[@"controllers"]) {
+			NSDictionary	*controllerInfo = info[@"controllers"][key];
+			NSString		*className = controllerInfo[@"controllerClass"];
+			Class			class = NSClassFromString(className);
+			
+			if (class == nil) {
+				className = [self demangleClassName: className];
+				class = NSClassFromString(className);
+			}
 		
-		if (class == nil) {
-			className = [self demangleClassName: className];
-			class = NSClassFromString(className);
+			if (class == nil) continue;
+			
+			WK_InterfaceController		*controller = [class controllerWithIdentifier: key andInterfaceDictionary: controllerInfo inNavigationController: self.navigationController];
+			
+			controllers[key] = controller;
 		}
+		_allControllers = controllers;
 		
-		if (class == nil) continue;
-		
-		WK_InterfaceController		*controller = [class controllerWithInterfaceDictionary: controllerInfo inBundle: self.bundle];
-		return controller;
+		[_allControllers[info[@"root"]] setIsRoot: YES];
 	}
-	
+	return _allControllers;
+}
+
+- (WK_InterfaceController *) controllerWithIdentifier: (NSString *) identifier {
+	return self.allControllers[identifier];
+}
+
+- (WK_InterfaceController *) rootViewController {
+	for (WK_InterfaceController *controller in self.allControllers.allValues) {
+		if (controller.isRoot) return controller;
+	}
 	return nil;
+}
+
+- (WK_NavigationController *) navigationController {
+	if (_navigationController == nil) {
+		_navigationController = [[WK_NavigationController alloc] initWithStoryboard: self];
+	}
+	return _navigationController;
 }
 
 - (NSString *) demangleClassName: (NSString *) name {

@@ -7,13 +7,14 @@
 //
 
 #import "WK_SimViewController.h"
-#import "WK_StoryboardMunger.h"
+#import "WK_Storyboard.h"
 #import "WK_InterfaceController.h"
+#import "WK_NavigationController.h"
 
 @interface WK_SimViewController ()
 @property (nonatomic, weak) IBOutlet UIImageView *watchImageView;
 @property (nonatomic, weak) IBOutlet UIView *watchDisplayView;
-@property (nonatomic, strong) WK_InterfaceController *watchInterface;
+@property (nonatomic, strong) WK_NavigationController *watchInterface;
 @property (nonatomic, weak) IBOutlet UIButton *scaleButton, *doneButton;
 @property (nonatomic) CGFloat scale;
 @end
@@ -21,8 +22,8 @@
 @implementation WK_SimViewController
 
 + (instancetype) simController {
-	WK_StoryboardMunger		*munger = [WK_StoryboardMunger mungerWithFirstWatchKitExtension];
-	WK_InterfaceController	*interface = munger.rootController;
+	WK_Storyboard		*munger = [WK_Storyboard storyboardWithFirstWatchKitExtension];
+	WK_NavigationController	*interface = munger.navigationController;
 	WK_SimViewController	*controller = [[self alloc] initWithNibName: NSStringFromClass(self) bundle: [NSBundle bundleForClass: [self class]]];
 	
 	controller.watchInterface = interface;
@@ -33,8 +34,7 @@
 - (void) viewDidLoad {
     [super viewDidLoad];
 	
-	self.watchInterface.frame = self.watchDisplayView.bounds;
-	[self.watchDisplayView addSubview: self.watchInterface];
+	[self.watchInterface setHostView: self.watchDisplayView];
 	self.watchInterface.interfaceSize = WK_InterfaceSize_42mm;
 }
 
