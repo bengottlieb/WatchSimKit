@@ -6,13 +6,21 @@
 //
 //
 
-import WatchKit
 import Foundation
+import WatchKit
 
 
-class InterfaceController: WKInterfaceController {
+#if WATCH_SIM
+	import WatchSimKit
+	typealias WKInterfaceParent = WK_InterfaceController
+#else
+	typealias WKInterfaceParent = WKInterfaceController
+#endif
+
+	
+class InterfaceController: WKInterfaceParent {
 	var timer: NSTimer?
-	@IBOutlet var label: WKInterfaceLabel!
+	@IBOutlet var button: WKInterfaceButton!
 	
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
@@ -35,11 +43,11 @@ class InterfaceController: WKInterfaceController {
 	func timerFired() {
 		var text = "\(NSDate())"
 		var items = text.componentsSeparatedByString(" ")
-		self.label.setText(items[1])
+		self.button?.setTitle(items[1])
 	}
 	
 	@IBAction func buttonPressed() {
-		self.label.setText("Tick")
+		self.button?.setTitle("Tick")
 	}
 
 }
