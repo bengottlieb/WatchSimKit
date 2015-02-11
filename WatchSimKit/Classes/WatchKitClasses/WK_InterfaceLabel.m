@@ -48,6 +48,10 @@
 		labelSize = [self.label.text sizeWithAttributes: @{ NSFontAttributeName: self.label.font }];
 	}
 	
+	if (self.fitWidthToContent) {
+		labelSize.width = size.width;
+	}
+	
 	return CGSizeMake(MIN(size.width, ceilf(labelSize.width)), MAX(18, ceilf(labelSize.height)));
 }
 
@@ -58,6 +62,10 @@
 		self.textColor = self.backgroundColor;
 		self.backgroundColor = nil;
 	}
+	
+	if ([dict[@"alignment"] isEqual: @"center"]) self.label.textAlignment = NSTextAlignmentCenter;
+	if ([dict[@"alignment"] isEqual: @"right"]) self.label.textAlignment = NSTextAlignmentRight;
+	
 	self.text = dict[@"text"][@"fallbackString"];
 }
 

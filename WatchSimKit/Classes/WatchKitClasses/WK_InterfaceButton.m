@@ -17,7 +17,7 @@
 
 @implementation WK_InterfaceButton
 
-- (void) setText: (NSString *) text {
+- (void) setTitle: (NSString *) text {
 	[self.button setTitle: text forState: UIControlStateNormal];
 }
 
@@ -25,7 +25,8 @@
 	[self.button setTitleColor: color forState: UIControlStateNormal];
 }
 
-- (void) setAttributedText: (NSAttributedString *) string {
+- (void) setAttributedTitle: (NSAttributedString *) string {
+	[self.button setAttributedTitle: string forState: UIControlStateNormal];
 }
 
 - (void) setBackgroundImage: (UIImage *) image {
@@ -52,6 +53,7 @@
 		_button.autoresizingMask = UIViewAutoresizingFlexibleWidth | UIViewAutoresizingFlexibleHeight;
 		_button.showsTouchWhenHighlighted = true;
 		_button.titleLabel.font = [UIFont systemFontOfSize: 14];
+		_button.backgroundColor = [UIColor colorWithWhite: 0.9 alpha: 0.2];
 		[self addSubview: _button];
 	}
 	return _button;
@@ -61,7 +63,7 @@
 	CGSize				buttonSize = self.backgroundImage.size;
 	
 	if (!self.fitWidthToContent) buttonSize.width = self.fixedWidth ? self.fixedWidth / self.interfaceController.scalingFactor : size.width;
-	if (!self.fitHeightToContent) buttonSize.height = 38 / self.interfaceController.scalingFactor;
+	if (!self.fitHeightToContent || buttonSize.height == 0) buttonSize.height = 38 / self.interfaceController.scalingFactor;
 	
 	if (self.backgroundImage) {
 		buttonSize.height = self.backgroundImage.size.height / self.interfaceController.scalingFactor;
@@ -78,7 +80,8 @@
 	}
 	
 	self.layer.cornerRadius = 6.0;
-	self.text = dict[@"title"][@"fallbackString"];
+	self.layer.masksToBounds = true;
+	self.title = dict[@"title"][@"fallbackString"];
 	if (dict[@"titleColor"]) self.textColor = [UIColor colorWithHexString: dict[@"titleColor"]];
 	if (dict[@"image"]) [self setBackgroundImageNamed: dict[@"image"]];
 }

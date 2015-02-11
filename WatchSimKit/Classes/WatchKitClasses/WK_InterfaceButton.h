@@ -10,9 +10,9 @@
 
 @interface WK_InterfaceButton : WK_InterfaceObject
 
-- (void) setText: (NSString *) text;
+- (void) setTitle: (NSString *) text;
 - (void) setTextColor: (UIColor *) color;
-- (void) setAttributedText: (NSAttributedString *) string;
+- (void) setAttributedTitle: (NSAttributedString *) string;
 
 
 @end

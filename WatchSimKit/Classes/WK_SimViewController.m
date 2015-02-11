@@ -43,8 +43,12 @@
 
 	self.scale = (self.scale == 1.0) ? 2.0 : 1.0;
 	
-	self.watchImageView.transform = CGAffineTransformMakeScale(self.scale, self.scale);
-	self.watchDisplayView.transform = CGAffineTransformMakeScale(self.scale, self.scale);
+	[UIView animateWithDuration: 0.2 delay: 0.0 usingSpringWithDamping: 0.5 initialSpringVelocity: 0.0 options: UIViewAnimationOptionCurveEaseInOut animations:^{
+		self.watchImageView.transform = CGAffineTransformMakeScale(self.scale, self.scale);
+		self.watchDisplayView.transform = CGAffineTransformMakeScale(self.scale, self.scale);
+	} completion:^(BOOL finished) {
+		
+	}];
 	
 }
 

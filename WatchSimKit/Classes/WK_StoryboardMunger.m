@@ -21,7 +21,7 @@
 	NSArray			*plugins = [[NSFileManager defaultManager] contentsOfDirectoryAtURL: pluginURL includingPropertiesForKeys: nil options: 0 error: nil];
 	
 	for (NSURL *url in plugins) {
-		if ([url.pathExtension isEqual: @"app"]) return [self mungerWithAppExtensionURL: url];
+		if ([url.pathExtension isEqual: @"app"] || [url.pathExtension isEqual: @"appex"]) return [self mungerWithAppExtensionURL: url];
 	}
 	return nil;
 }

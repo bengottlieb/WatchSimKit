@@ -28,8 +28,14 @@
 	NSString			*itemsKey = [NSString stringWithFormat: @"items-%@", type];
 	
 	for (NSDictionary *itemDict in dict) {
+		if (itemDict[@"type"] != nil) {
+			profile.items = [profile.items arrayByAddingObject: itemDict];
+			continue;
+		}
 		if (itemDict[itemsKey]) profile.items = [profile.items arrayByAddingObject: [self groupWithItems: itemDict[itemsKey]]];
 		if (itemDict[@"items"]) profile.items = [profile.items arrayByAddingObject: [self groupWithItems: itemDict[@"items"]]];
+//		if (itemDict[itemsKey]) profile.items = [profile.items arrayByAddingObject: [self groupWithItems: itemDict[itemsKey]]];
+//		if (itemDict[@"items"]) profile.items = [profile.items arrayByAddingObject: [self groupWithItems: itemDict[@"items"]]];
 		if (itemDict[imageKey]) profile.imageName = itemDict[imageKey];
 		if (itemDict[@"image"] && profile.imageName == nil) profile.imageName = itemDict[@"image"];
 	}
