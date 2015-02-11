@@ -14,3 +14,4 @@ Currently, only a subset of the WatchKit Interface controls are available, inclu
 
 Some of these may not display with 100% fidelity.
 
+Note: to build the Sample, you'll need to first build the Combined target of the main project.
