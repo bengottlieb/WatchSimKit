@@ -8,7 +8,6 @@
 
 #import "WK_InterfaceGroup.h"
 #import "WK_InterfaceController.h"
-#import "WK_InterfaceStatusBar.h"
 #import "WK_InterfaceSeparator.h"
 
 @interface WK_InterfaceGroup ()
@@ -24,10 +23,6 @@
 	
 	for (UIView *view in self.objects) [view removeFromSuperview];
 	self.objects = [NSMutableArray new];
-	
-	if (self.isRootGroup) {
-		[self addSubview: [WK_InterfaceStatusBar statusBar]];
-	}
 	
 	for (NSDictionary *item in self.items) {
 		[self addItem: item];
