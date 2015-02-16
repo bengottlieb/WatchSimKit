@@ -1,35 +1,15 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6750" systemVersion="14C109" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
+<document type="com.apple.InterfaceBuilder.WatchKit.Storyboard" version="3.0" toolsVersion="6221" systemVersion="13E28" targetRuntime="watchKit" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" initialViewController="AgC-eL-Hgc">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6735"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3737"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="6213"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBWatchKitPlugin" version="3733"/>
     </dependencies>
     <scenes>
-        <!--first-->
+        <!--Interface Controller-->
         <scene sceneID="aou-V4-d1y">
             <objects>
-                <controller identifier="first" id="AgC-eL-Hgc" customClass="InterfaceController" customModule="WatchSim">
-                    <items>
-                        <button width="1" alignment="left" title="Button" id="A1a-px-xFa">
-                            <connections>
-                                <segue destination="xGH-yd-a5a" kind="push" id="KuE-L5-lLJ"/>
-                            </connections>
-                        </button>
-                    </items>
-                </controller>
+                <controller id="AgC-eL-Hgc" customClass="InterfaceController" customModuleProvider="target"/>
             </objects>
-        </scene>
-        <!--second-->
-        <scene sceneID="z3R-Dp-caI">
-            <objects>
-                <controller identifier="second" id="xGH-yd-a5a" customClass="SecondController" customModule="WatchSim">
-                    <items>
-                        <button width="1" alignment="left" title="Button" id="Yev-VO-wWt"/>
-                        <button width="1" alignment="left" title="Button" id="alK-ba-5wN"/>
-                    </items>
-                </controller>
-            </objects>
-            <point key="canvasLocation" x="757" y="415"/>
         </scene>
     </scenes>
 </document>

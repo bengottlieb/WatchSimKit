@@ -2,7 +2,7 @@
 //  InterfaceController.swift
 //  WatchSim WatchKit Extension
 //
-//  Created by Ben Gottlieb on 2/11/15.
+//  Created by Ben Gottlieb on 2/15/15.
 //  Copyright (c) 2015 Stand Alone, inc. All rights reserved.
 //
 
@@ -12,7 +12,7 @@ import Foundation
 #if WATCH_SIM
 	import WatchSimKit
 	typealias WKInterfaceParent = WK_InterfaceController
-	#else
+#else
 	typealias WKInterfaceParent = WKInterfaceController
 #endif
 
@@ -35,8 +35,4 @@ class InterfaceController: WKInterfaceParent {
         super.didDeactivate()
     }
 
-	
-	override func contextForSegueWithIdentifier(segueIdentifier: String) -> AnyObject? {
-		return ""
-	}
 }
