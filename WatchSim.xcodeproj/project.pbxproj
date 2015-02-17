@@ -52,6 +52,7 @@
 		B54883C71A86F380009F8247 /* WK_InterfaceProfile.m in Sources */ = {isa = PBXBuildFile; fileRef = B54883AF1A86F380009F8247 /* WK_InterfaceProfile.m */; };
 		B54883C81A86F380009F8247 /* WK_Storyboard.h in Headers */ = {isa = PBXBuildFile; fileRef = B54883B01A86F380009F8247 /* WK_Storyboard.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B54883C91A86F380009F8247 /* WK_Storyboard.m in Sources */ = {isa = PBXBuildFile; fileRef = B54883B11A86F380009F8247 /* WK_Storyboard.m */; };
+		B54BECA31A9266D200308742 /* InterfaceController.swift in Sources */ = {isa = PBXBuildFile; fileRef = B5F115FF1A9197B1004BB268 /* InterfaceController.swift */; };
 		B555B4B71A8BD50A00B9DBF5 /* WK_NavigationController.h in Headers */ = {isa = PBXBuildFile; fileRef = B555B4B51A8BD50A00B9DBF5 /* WK_NavigationController.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		B555B4B81A8BD50A00B9DBF5 /* WK_NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = B555B4B61A8BD50A00B9DBF5 /* WK_NavigationController.m */; };
 		B5CA71A51A8A945C0038C484 /* WK_SimViewController.h in Headers */ = {isa = PBXBuildFile; fileRef = B5CA71A21A8A945C0038C484 /* WK_SimViewController.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -555,6 +556,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				B548834F1A86ED38009F8247 /* WS_AppDelegate.m in Sources */,
+				B54BECA31A9266D200308742 /* InterfaceController.swift in Sources */,
 				B54883271A86E792009F8247 /* main.m in Sources */,
 				B54883501A86ED38009F8247 /* WS_ViewController.m in Sources */,
 			);
@@ -676,7 +678,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 8.1;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
-				OTHER_SWIFT_FLAGS = "-DWATCH_SIM";
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -715,7 +717,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 8.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
-				OTHER_SWIFT_FLAGS = "-DWATCH_SIM";
+				OTHER_SWIFT_FLAGS = "";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -729,6 +731,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/WatchSimKit/WatchSimHarness/Rsc/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DWATCH_SIM";
 				PRODUCT_NAME = WatchSim;
 			};
 			name = Debug;
@@ -741,6 +744,7 @@
 				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = "$(SRCROOT)/WatchSimKit/WatchSimHarness/Rsc/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				OTHER_SWIFT_FLAGS = "-DWATCH_SIM";
 				PRODUCT_NAME = WatchSim;
 			};
 			name = Release;

@@ -18,7 +18,8 @@ import Foundation
 
 
 class InterfaceController: WKInterfaceParent {
-
+	@IBOutlet var table: WKInterfaceTable!
+	
     override func awakeWithContext(context: AnyObject?) {
         super.awakeWithContext(context)
         
@@ -26,6 +27,8 @@ class InterfaceController: WKInterfaceParent {
     }
 
     override func willActivate() {
+		self.table.setRowTypes(["myRowController", "myRowController"])
+		
         // This method is called when watch view controller is about to be visible to user
         super.willActivate()
     }
@@ -35,4 +38,10 @@ class InterfaceController: WKInterfaceParent {
         super.didDeactivate()
     }
 
+}
+
+
+class TableRowController: NSObject {
+	@IBOutlet var rowLabel: WKInterfaceLabel!
+	@IBOutlet var rowButton: WKInterfaceButton!
 }
