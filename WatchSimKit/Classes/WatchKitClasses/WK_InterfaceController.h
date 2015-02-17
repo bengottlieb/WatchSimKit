@@ -10,6 +10,7 @@
 #import "WK_NavigationController.h"
 
 @class WK_InterfaceGroup, WK_NavigationController;
+@protocol WK_ObjectOwner;
 
 @interface WK_InterfaceController : UIView
 

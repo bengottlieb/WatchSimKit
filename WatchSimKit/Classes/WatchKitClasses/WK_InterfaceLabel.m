@@ -56,6 +56,8 @@
 }
 
 - (void) loadFromDictionary: (NSDictionary *) dict {
+	self.backgroundColor = nil;
+	
 	[super loadFromDictionary: dict];
 	
 	if (self.backgroundColor) {

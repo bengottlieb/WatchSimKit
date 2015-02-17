@@ -9,6 +9,7 @@
 #import "WK_InterfaceGroup.h"
 #import "WK_InterfaceController.h"
 #import "WK_InterfaceSeparator.h"
+#import "WK_InterfaceProfile.h"
 
 @interface WK_InterfaceGroup ()
 @property (nonatomic, strong) NSArray *items;
@@ -17,6 +18,11 @@
 @end
 
 @implementation WK_InterfaceGroup
+
+- (void) loadProfile: (WK_InterfaceProfile *) profile {
+	[self loadItems: profile.items];
+	self.backgroundImageName = profile.imageName;
+}
 
 - (void) loadItems: (NSArray *) items {
 	self.items = items;
@@ -47,7 +53,7 @@
 }
 
 - (void) addItem: (NSDictionary *) item {
-	WK_InterfaceObject		*object = [WK_InterfaceObject objectWithDictionary: item inController: self.interfaceController];
+	WK_InterfaceObject		*object = [WK_InterfaceObject objectWithDictionary: item inController: self.interfaceController owner: self.owner];
 	
 	object.parentGroup = self;
 	if (object == nil) return;

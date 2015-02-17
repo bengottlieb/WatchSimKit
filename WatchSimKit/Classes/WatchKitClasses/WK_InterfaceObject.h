@@ -9,6 +9,9 @@
 #import <UIKit/UIKit.h>
 #import "UIColor+Additions.h"
 
+@protocol WK_ObjectOwner <NSObject>
+- (void) setValue: (id) value forKey: (id) key;
+@end
 
 typedef NS_ENUM(NSUInteger, WK_InterfaceObjectType) {
 	WK_InterfaceObjectType_none,
@@ -16,7 +19,8 @@ typedef NS_ENUM(NSUInteger, WK_InterfaceObjectType) {
 	WK_InterfaceObjectType_label,
 	WK_InterfaceObjectType_button,
 	WK_InterfaceObjectType_image,
-	WK_InterfaceObjectType_separator
+	WK_InterfaceObjectType_separator,
+	WK_InterfaceObjectType_table,
 };
 
 @class WK_InterfaceController, WK_InterfaceGroup;
@@ -24,8 +28,8 @@ typedef NS_ENUM(NSUInteger, WK_InterfaceObjectType) {
 @interface WK_InterfaceObject : UIView
 
 + (WK_InterfaceObjectType) typeFromString: (NSString *) string;
-+ (WK_InterfaceObject *) objectWithDictionary: (NSDictionary *) info inController: (WK_InterfaceController *) controller;;
-+ (instancetype) createWithDictionary: (NSDictionary *) info inController: (WK_InterfaceController *) controller;
++ (WK_InterfaceObject *) objectWithDictionary: (NSDictionary *) info inController: (WK_InterfaceController *) controller owner: (id <WK_ObjectOwner>) owner;
++ (instancetype) createWithDictionary: (NSDictionary *) info inController: (WK_InterfaceController *) controller owner: (id <WK_ObjectOwner>) owner;
 
 - (void) setHidden: (BOOL) hidden;
 - (void) setAlpha: (CGFloat) alpha;
@@ -33,7 +37,7 @@ typedef NS_ENUM(NSUInteger, WK_InterfaceObjectType) {
 - (void) setWidth: (CGFloat) width;
 - (void) setHeight: (CGFloat) height;
 
-
+@property (nonatomic, weak) id <WK_ObjectOwner> owner;
 @property (nonatomic) CGFloat fixedHeight, fixedWidth;
 @property (nonatomic) BOOL fitHeightToContent, fitWidthToContent;
 @property (nonatomic, weak) WK_InterfaceController *interfaceController;

@@ -12,7 +12,7 @@
 #import "WK_Storyboard.h"
 #import "WK_NavigationController.h"
 
-@interface WK_InterfaceController ()
+@interface WK_InterfaceController () <WK_ObjectOwner>
 @property (nonatomic, strong) WK_InterfaceProfile *profile42, *profile38;
 @property (nonatomic, strong) WK_InterfaceGroup *rootGroup;
 @property (nonatomic, strong) WK_NavigationController *navigationController;
@@ -86,6 +86,7 @@
 	if (_rootGroup == nil) {
 		_rootGroup = [[WK_InterfaceGroup alloc] initWithFrame: self.bounds];
 		_rootGroup.interfaceController = self;
+		_rootGroup.owner = self;
 		_rootGroup.isRootGroup = true;
 		[self addSubview: _rootGroup];
 	}
@@ -109,9 +110,8 @@
 	
 	self.bounds = frame;
 	
-	NSLog(@"42: %@", profile.items);
-	[self.rootGroup loadItems: interfaceSize == WK_InterfaceSize_42mm ? profile.items : profile.items];
-	self.rootGroup.backgroundImageName = profile.imageName;
+	//NSLog(@"42: %@", profile.items);
+	[self.rootGroup loadProfile: profile];
 
 	[self awakeWithContext: nil];
 	[self willActivate];

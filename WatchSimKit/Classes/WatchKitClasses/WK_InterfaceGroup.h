@@ -8,10 +8,14 @@
 
 #import "WK_InterfaceObject.h"
 
+@class WK_InterfaceProfile;
+
 @interface WK_InterfaceGroup : WK_InterfaceObject
 
 @property (nonatomic) BOOL isRootGroup;
 @property (nonatomic) BOOL horizontalLayout;
+
+- (void) loadProfile: (WK_InterfaceProfile *) profile;
 
 - (void) loadItems: (NSArray *) items;
 - (void) objectChanged: (WK_InterfaceObject *) object;

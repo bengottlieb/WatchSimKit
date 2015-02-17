@@ -13,6 +13,7 @@
 #import "WK_InterfaceSeparator.h"
 #import "WK_InterfaceController.h"
 #import "WK_InterfaceImage.h"
+#import "WK_InterfaceTable.h"
 
 @implementation WK_InterfaceObject
 
@@ -22,30 +23,40 @@
 	if ([string isEqual: @"button"]) return WK_InterfaceObjectType_button;
 	if ([string isEqual: @"image"]) return WK_InterfaceObjectType_image;
 	if ([string isEqual: @"separator"]) return WK_InterfaceObjectType_separator;
+	if ([string isEqual: @"table"]) return WK_InterfaceObjectType_table;
 	
 	return WK_InterfaceObjectType_none;
 }
 
-+ (instancetype) createWithDictionary: (NSDictionary *) info inController: (WK_InterfaceController *) controller {
++ (instancetype) createWithDictionary: (NSDictionary *) info inController: (WK_InterfaceController *) controller owner: (id <WK_ObjectOwner>) owner {
 	WK_InterfaceObject		*object = [[self alloc] initWithFrame: CGRectZero];
 	
 	object.interfaceController = controller;
+	object.owner = owner;
 	[object loadFromDictionary: info];
 	return object;
 }
 
-+ (WK_InterfaceObject *) objectWithDictionary: (NSDictionary *) info inController: (WK_InterfaceController *) controller {	
++ (WK_InterfaceObject *) objectWithDictionary: (NSDictionary *) info inController: (WK_InterfaceController *) controller owner: (id <WK_ObjectOwner>) owner {
 	switch ([self typeFromString: info[@"type"]]) {
-		case WK_InterfaceObjectType_label: return [WK_InterfaceLabel createWithDictionary: info inController: controller];
-		case WK_InterfaceObjectType_group: return [WK_InterfaceGroup createWithDictionary: info inController: controller];
-		case WK_InterfaceObjectType_button: return [WK_InterfaceButton createWithDictionary: info inController: controller];
-		case WK_InterfaceObjectType_separator: return [WK_InterfaceSeparator createWithDictionary: info inController: controller];
-		case WK_InterfaceObjectType_image: return [WK_InterfaceImage createWithDictionary: info inController: controller];
+		case WK_InterfaceObjectType_label: return [WK_InterfaceLabel createWithDictionary: info inController: controller owner: owner];
+		case WK_InterfaceObjectType_group: return [WK_InterfaceGroup createWithDictionary: info inController: controller owner: owner];
+		case WK_InterfaceObjectType_button: return [WK_InterfaceButton createWithDictionary: info inController: controller owner: owner];
+		case WK_InterfaceObjectType_separator: return [WK_InterfaceSeparator createWithDictionary: info inController: controller owner: owner];
+		case WK_InterfaceObjectType_image: return [WK_InterfaceImage createWithDictionary: info inController: controller owner: owner];
+		case WK_InterfaceObjectType_table: return [WK_InterfaceTable createWithDictionary: info inController: controller owner: owner];
 			
 		default: break;
 	}
 	
 	return nil;
+}
+
+- (id) initWithFrame:(CGRect)frame {
+	if (self = [super initWithFrame: frame]) {
+		self.backgroundColor = [UIColor blackColor];
+	}
+	return self;
 }
 
 - (void) setHidden: (BOOL) hidden {
@@ -84,7 +95,7 @@
 
 - (void) loadFromDictionary: (NSDictionary *) dict {
 	self.interfaceDictionary = dict;
-	if (dict[@"property"]) [self.interfaceController setValue: self forKey: dict[@"property"]];
+	if (dict[@"property"]) [self.owner setValue: self forKey: dict[@"property"]];
 	
 	if (dict[@"height"])
 		self.fixedHeight = [dict[@"height"] floatValue];
@@ -112,6 +123,5 @@
 	
 	return _backgroundImageView;
 }
-
 
 @end
