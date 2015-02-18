@@ -20,6 +20,7 @@
 @implementation WK_InterfaceGroup
 
 - (void) loadProfile: (WK_InterfaceProfile *) profile forInterfaceController: (WK_InterfaceController *) controller {
+	[self loadProfileDictionary: profile.interfaceDictionary];
 	[self loadItems: [profile itemsForController: controller]];
 	self.backgroundImageName = [profile imageNameForController: controller];
 }
@@ -37,17 +38,21 @@
 	[self setNeedsLayout];
 }
 
-- (void) loadFromDictionary: (NSDictionary *) dict {
+- (void) loadProfileDictionary: (NSDictionary *) dict {
 	[super loadFromDictionary: dict];
 	self.horizontalLayout = ![dict[@"layout"] isEqual: @"vertical"];
 	
 	self.spacing = (dict[@"spacing"]) ? [dict[@"spacing"] floatValue] : 2.0;
-	self.cornerRadius = self.parentGroup.isRootGroup ? 6.0 : 0.0;
+	self.cornerRadius = ((!self.isRootGroup && self.parentGroup == nil) || self.parentGroup.isRootGroup) ? 6.0 : 0.0;
 	if (dict[@"radius"]) self.cornerRadius = [dict[@"radius"] floatValue];
 	
 	self.layer.cornerRadius = self.cornerRadius;
 	self.layer.masksToBounds = true;
+}
+
+- (void) loadFromDictionary: (NSDictionary *) dict {
 	
+	[self loadProfileDictionary: dict];
 	[self loadItems: dict[@"items"]];
 	
 }
@@ -98,7 +103,7 @@
 }
 
 - (void) layoutComponentsInRect: (CGRect) rect {
-	CGPoint			topLeft = CGPointZero;
+	CGPoint			topLeft = CGPointMake(self.cornerRadius, 0);
 	
 	for (WK_InterfaceObject *object in self.objects) {
 		CGSize			size = [object actualSizeInSize: rect.size];

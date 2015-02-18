@@ -21,5 +21,6 @@
 @property (nonatomic, readonly) NSString *identifier;
 @property (nonatomic, readonly) Class controllerClass;
 @property (nonatomic, readonly) id rowController;
+@property (nonatomic, readonly) NSDictionary *interfaceDictionary;
 
 @end

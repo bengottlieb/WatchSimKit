@@ -49,7 +49,7 @@
 	}
 	
 	if (self.fitWidthToContent) {
-		labelSize.width = size.width;
+	//	labelSize.width = size.width;
 	}
 	
 	return CGSizeMake(MIN(size.width, ceilf(labelSize.width)), MAX(18, ceilf(labelSize.height)));
