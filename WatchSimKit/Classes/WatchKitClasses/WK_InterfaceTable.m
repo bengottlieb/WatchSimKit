@@ -13,8 +13,8 @@
 
 @interface WK_InterfaceTable () <UITableViewDataSource, UITableViewDelegate>
 @property (nonatomic, strong) UITableView *tableView;
-@property (nonatomic, strong) NSMutableDictionary *standardRowControllers, *compactRowControllers;
-@property (nonatomic, strong) NSMutableDictionary *cachedRowHeights;
+@property (nonatomic, strong) NSMutableDictionary *rowControllers;
+@property (nonatomic, strong) NSMutableDictionary *cachedRowTypeHeights;
 @end
 
 @implementation WK_InterfaceTable
@@ -22,13 +22,11 @@
 - (void) loadFromDictionary: (NSDictionary *) dict {
 	[super loadFromDictionary: dict];
 	
-	self.compactRowControllers = [NSMutableDictionary new];
-	self.standardRowControllers = [NSMutableDictionary new];
+	self.rowControllers = [NSMutableDictionary new];
 	self.rowTypes = [NSMutableArray array];
 	
 	for (NSString *name in dict[@"rows"]) {
-		self.compactRowControllers[name] = [WK_InterfaceProfile compactInterfaceFromDictionary: dict[@"rows"][name]];
-		self.standardRowControllers[name] = [WK_InterfaceProfile regularInterfaceFromDictionary: dict[@"rows"][name]];
+		self.rowControllers[name] = [WK_InterfaceProfile interfaceWithIdentifier: name fromDictionary: dict[@"rows"][name]];
 	}
 	
 	self.tableView = [[UITableView alloc] initWithFrame: self.bounds style: UITableViewStylePlain];
@@ -56,17 +54,18 @@
 }
 
 - (void) reloadData {
-	self.cachedRowHeights = [NSMutableDictionary new];
+	self.cachedRowTypeHeights = [NSMutableDictionary new];
 	[self.tableView reloadData];
 }
 
 //==========================================================================================
 #pragma mark Table DataSource/Delegate
 - (UITableViewCell *) tableView: (UITableView *) tableView cellForRowAtIndexPath: (NSIndexPath *) indexPath {
-	WK_InterfaceTableCell *cell = (id) [tableView dequeueReusableCellWithIdentifier: @"row" forIndexPath: indexPath];
+	WK_InterfaceTableCell	*cell = (id) [tableView dequeueReusableCellWithIdentifier: @"row" forIndexPath: indexPath];
+	NSString				*type = self.rowTypes[indexPath.row];
 	
-	[cell setProfile: self.standardRowControllers[self.rowTypes[indexPath.row]] inController: self.interfaceController];
-	self.cachedRowHeights[indexPath] = @(cell.height);
+	[cell setProfile: self.rowControllers[type] inController: self.interfaceController];
+	self.cachedRowTypeHeights[type] = @(cell.height);
 	
 	return cell;
 }
@@ -80,7 +79,9 @@
 }
 
 - (CGFloat) tableView: (UITableView *) tableView heightForRowAtIndexPath: (NSIndexPath *) indexPath {
-	if (self.cachedRowHeights[indexPath]) return [self.cachedRowHeights[indexPath] floatValue];
+	NSString				*type = self.rowTypes[indexPath.row];
+
+	if (self.cachedRowTypeHeights[type]) return [self.cachedRowTypeHeights[type] floatValue];
 	
 	return 44.0;
 }

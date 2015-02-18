@@ -16,7 +16,11 @@
                                     <group key="rootItem" width="1" alignment="left" id="YWH-xc-nWb">
                                         <items>
                                             <label alignment="left" text="Label" id="gpe-zS-uEa"/>
-                                            <button width="61" alignment="left" title="Button" id="uqO-AT-rBb"/>
+                                            <button width="61" alignment="left" title="Button" id="uqO-AT-rBb">
+                                                <connections>
+                                                    <action selector="buttonTapped:" destination="YPE-S3-98D" id="XJx-2K-r8j"/>
+                                                </connections>
+                                            </button>
                                         </items>
                                         <color key="backgroundColor" red="0.036458173419999997" green="0.82186792990000002" blue="0.13290384080000001" alpha="1" colorSpace="calibratedRGB"/>
                                     </group>

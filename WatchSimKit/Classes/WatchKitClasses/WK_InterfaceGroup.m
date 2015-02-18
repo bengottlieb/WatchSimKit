@@ -19,9 +19,9 @@
 
 @implementation WK_InterfaceGroup
 
-- (void) loadProfile: (WK_InterfaceProfile *) profile {
-	[self loadItems: profile.items];
-	self.backgroundImageName = profile.imageName;
+- (void) loadProfile: (WK_InterfaceProfile *) profile forInterfaceController: (WK_InterfaceController *) controller {
+	[self loadItems: [profile itemsForController: controller]];
+	self.backgroundImageName = [profile imageNameForController: controller];
 }
 
 - (void) loadItems: (NSArray *) items {

@@ -8,12 +8,18 @@
 
 #import <Foundation/Foundation.h>
 
+@class WK_InterfaceController;
+
 @interface WK_InterfaceProfile : NSObject
 
-+ (instancetype) compactInterfaceFromDictionary: (NSDictionary *) dict;
-+ (instancetype) regularInterfaceFromDictionary: (NSDictionary *) dict;
++ (instancetype) interfaceWithIdentifier: (NSString *) identifier fromDictionary: (NSDictionary *) dict;
 
+- (NSArray *) itemsForController: (WK_InterfaceController *) controller;
+- (NSString *) imageNameForController: (WK_InterfaceController *) controller;
 
-@property (nonatomic, strong) NSArray *items;
-@property (nonatomic, strong) NSString *imageName;
+@property (nonatomic) BOOL isRoot;
+@property (nonatomic, readonly) NSString *identifier;
+@property (nonatomic, readonly) Class controllerClass;
+@property (nonatomic, readonly) id rowController;
+
 @end

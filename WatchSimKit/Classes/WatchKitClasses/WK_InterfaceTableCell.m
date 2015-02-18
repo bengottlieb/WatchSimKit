@@ -12,6 +12,7 @@
 @interface WK_InterfaceTableCell ()
 @property (nonatomic, strong) WK_InterfaceGroup *group;
 @property (nonatomic, strong) WK_InterfaceController *interfaceController;
+@property (nonatomic, strong) id <WK_ObjectOwner> rowController;
 @end
 
 @implementation WK_InterfaceTableCell
@@ -21,14 +22,17 @@
 	self.interfaceController = controller;
 	self.profile = profile;
 
+//	self.rowController = [profile ];
+	
 	[self.group removeFromSuperview];
 	
 	self.group = [[WK_InterfaceGroup alloc] initWithFrame: self.contentView.bounds];
 	self.group.interfaceController = self.interfaceController;
+	self.group.owner = [profile rowController];
 	[self.contentView addSubview: self.group];
 	self.contentView.backgroundColor = self.group.backgroundColor;
 	
-	[self.group loadProfile: profile];
+	[self.group loadProfile: profile forInterfaceController: self.interfaceController];
 }
 
 - (CGFloat) height {

@@ -9,12 +9,12 @@
 #import <UIKit/UIKit.h>
 #import "WK_NavigationController.h"
 
-@class WK_InterfaceGroup, WK_NavigationController;
+@class WK_InterfaceGroup, WK_NavigationController, WK_InterfaceProfile;
 @protocol WK_ObjectOwner;
 
 @interface WK_InterfaceController : UIView
 
-+ (instancetype) controllerWithIdentifier: (NSString *) ident andInterfaceDictionary: (NSDictionary *) interface inNavigationController: (WK_NavigationController *) nav;
++ (instancetype) controllerWithProfile: (WK_InterfaceProfile *) profile inNavigationController: (WK_NavigationController *) nav;
 + (CGRect) boundsForSize: (WK_InterfaceSize) size;
 
 - (UIImage *) imageNamed: (NSString *) name;

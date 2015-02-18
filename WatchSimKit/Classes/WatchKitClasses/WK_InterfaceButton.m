@@ -62,7 +62,15 @@
 
 - (void) buttonPressed: (UIButton *) sender {
 	if (self.interfaceDictionary[@"action"]) {
-		[self.button addTarget: self.interfaceController action: NSSelectorFromString(self.interfaceDictionary[@"action"]) forControlEvents:UIControlEventTouchUpInside];
+		SEL action = NSSelectorFromString(self.interfaceDictionary[@"action"]);
+		
+		if ([self.owner respondsToSelector: action]) {
+			#pragma clang diagnostic push
+			#pragma clang diagnostic ignored "-Warc-performSelector-leaks"
+				[self.owner performSelector: action withObject: nil];
+			#pragma clang diagnostic pop
+		}
+		
 	} else if (self.interfaceDictionary[@"segue"]) {
 		[self.interfaceController pushControllerWithName: self.interfaceDictionary[@"segue"][@"destination"] context: nil];
 	}

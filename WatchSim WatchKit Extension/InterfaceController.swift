@@ -37,6 +37,8 @@ class InterfaceController: WKInterfaceParent {
         // This method is called when watch view controller is no longer visible
         super.didDeactivate()
     }
+	
+	
 
 }
 
@@ -44,4 +46,8 @@ class InterfaceController: WKInterfaceParent {
 class TableRowController: NSObject {
 	@IBOutlet var rowLabel: WKInterfaceLabel!
 	@IBOutlet var rowButton: WKInterfaceButton!
+	
+	@IBAction func buttonTapped(sender: AnyObject?) {
+		println("Button tapped")
+	}
 }

@@ -9,10 +9,11 @@
 #import "WK_Storyboard.h"
 #import "WK_InterfaceController.h"
 #import "WK_NavigationController.h"
+#import "WK_InterfaceProfile.h"
 
 @interface WK_Storyboard ()
 @property (nonatomic, strong) NSBundle *bundle;
-@property (nonatomic, strong) NSDictionary *allControllers;
+@property (nonatomic, strong) NSDictionary *allProfiles;
 @end
 
 @implementation WK_Storyboard
@@ -59,43 +60,44 @@
 	return dict;
 }
 
-- (NSDictionary *) allControllers {
-	if (_allControllers == nil) {
+- (NSDictionary *) allProfiles {
+	if (_allProfiles == nil) {
 		NSMutableDictionary		*controllers = [NSMutableDictionary new];
 		NSDictionary			*info = [self extractMainStoryboard];
 	
 		for (NSString *key in info[@"controllers"]) {
-			NSDictionary	*controllerInfo = info[@"controllers"][key];
-			NSString		*className = controllerInfo[@"controllerClass"];
-			Class			class = NSClassFromString(className);
+			WK_InterfaceProfile			*profile = [WK_InterfaceProfile interfaceWithIdentifier: key fromDictionary: info[@"controllers"][key]];
 			
-			if (class == nil) {
-				className = [self demangleClassName: className];
-				class = NSClassFromString(className);
-			}
-		
-			if (class == nil) continue;
-			
-			WK_InterfaceController		*controller = [class controllerWithIdentifier: key andInterfaceDictionary: controllerInfo inNavigationController: self.navigationController];
-			
-			controllers[key] = controller;
+			if (profile) controllers[key] = profile;
 		}
-		_allControllers = controllers;
+		_allProfiles = controllers;
 		
-		[_allControllers[info[@"root"]] setIsRoot: YES];
+		[_allProfiles[info[@"root"]] setIsRoot: YES];
 	}
-	return _allControllers;
+	return _allProfiles;
+}
+
+- (WK_InterfaceProfile *) profileWithIdentifier: (NSString *) identifier {
+	return self.allProfiles[identifier];
+}
+
+- (WK_InterfaceProfile *) rootProfile {
+	for (WK_InterfaceProfile *profile in self.allProfiles.allValues) {
+		if (profile.isRoot) return profile;
+	}
+	return nil;
 }
 
 - (WK_InterfaceController *) controllerWithIdentifier: (NSString *) identifier {
-	return self.allControllers[identifier];
+	WK_InterfaceProfile			*profile = [self profileWithIdentifier: identifier];
+	
+	return profile ? [WK_InterfaceController controllerWithProfile: profile inNavigationController: nil] : nil;
 }
 
 - (WK_InterfaceController *) rootViewController {
-	for (WK_InterfaceController *controller in self.allControllers.allValues) {
-		if (controller.isRoot) return controller;
-	}
-	return nil;
+	WK_InterfaceProfile			*profile = self.rootProfile;
+	
+	return profile ? [WK_InterfaceController controllerWithProfile: profile inNavigationController: nil] : nil;
 }
 
 - (WK_NavigationController *) navigationController {

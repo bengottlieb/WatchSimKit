@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@class WK_InterfaceController, WK_NavigationController;
+@class WK_InterfaceController, WK_InterfaceProfile, WK_NavigationController;
 
 @interface WK_Storyboard : NSObject
 
@@ -22,5 +22,5 @@
 + (instancetype) storyboardWithFirstWatchKitExtension;
 
 - (WK_InterfaceController *) controllerWithIdentifier: (NSString *) identifier;
-
+- (WK_InterfaceProfile *) profileWithIdentifier: (NSString *) identifier;
 @end

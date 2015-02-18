@@ -13,7 +13,7 @@
 #import "WK_NavigationController.h"
 
 @interface WK_InterfaceController () <WK_ObjectOwner>
-@property (nonatomic, strong) WK_InterfaceProfile *profile42, *profile38;
+@property (nonatomic, strong) WK_InterfaceProfile *profile;
 @property (nonatomic, strong) WK_InterfaceGroup *rootGroup;
 @property (nonatomic, strong) WK_NavigationController *navigationController;
 @property (nonatomic, strong) WK_InterfaceController *parentController;
@@ -22,14 +22,13 @@
 
 @implementation WK_InterfaceController
 
-+ (instancetype) controllerWithIdentifier: (NSString *) ident andInterfaceDictionary: (NSDictionary *) interface inNavigationController: (WK_NavigationController *) nav {
-	WK_InterfaceController			*controller = [[self alloc] initWithFrame: CGRectZero];
++ (instancetype) controllerWithProfile: (WK_InterfaceProfile *) profile inNavigationController: (WK_NavigationController *) nav {
+	WK_InterfaceController			*controller = [[profile.controllerClass alloc] initWithFrame: CGRectZero];
 	
 	controller.navigationController = nav;
 	controller.scalingFactor = 1.0;
-	controller.identifier = ident;
-	controller.profile42 = [WK_InterfaceProfile regularInterfaceFromDictionary: interface];
-	controller.profile38 = [WK_InterfaceProfile compactInterfaceFromDictionary: interface];
+	controller.identifier = profile.identifier;
+	controller.profile = profile;
 	
 	return controller;
 }
@@ -99,7 +98,6 @@
 	if (self.interfaceSize != WK_InterfaceSize_none) [self didDeactivate];
 	_interfaceSize = interfaceSize;
 	
-	WK_InterfaceProfile	*profile = interfaceSize == WK_InterfaceSize_42mm ? self.profile42 : self.profile38;
 	CGRect			frame = [WK_InterfaceController boundsForSize: interfaceSize];
 	
 	frame.size.width *= self.scalingFactor;
@@ -111,7 +109,7 @@
 	self.bounds = frame;
 	
 	//NSLog(@"42: %@", profile.items);
-	[self.rootGroup loadProfile: profile];
+	[self.rootGroup loadProfile: self.profile forInterfaceController: self];
 
 	[self awakeWithContext: nil];
 	[self willActivate];
