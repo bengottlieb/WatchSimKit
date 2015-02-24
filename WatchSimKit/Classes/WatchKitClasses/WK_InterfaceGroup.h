@@ -17,6 +17,5 @@
 
 - (void) loadProfile: (WK_InterfaceProfile *) profile forInterfaceController: (WK_InterfaceController *) controller;
 
-- (void) loadItems: (NSArray *) items;
 - (void) objectChanged: (WK_InterfaceObject *) object;
 @end

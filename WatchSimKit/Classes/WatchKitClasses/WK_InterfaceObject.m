@@ -61,6 +61,8 @@
 
 - (void) setHidden: (BOOL) hidden {
 	[super setHidden: hidden];
+
+	[self.parentGroup objectChanged: self];
 }
 
 - (void) setAlpha: (CGFloat) alpha {

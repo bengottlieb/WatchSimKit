@@ -119,5 +119,6 @@
 	return [self.navigationController imageNamed: name];
 }
 
+- (NSString *) interfaceSizeString { return self.interfaceSize == WK_InterfaceSize_38mm ? @"compact" : @"regular"; }
 
 @end

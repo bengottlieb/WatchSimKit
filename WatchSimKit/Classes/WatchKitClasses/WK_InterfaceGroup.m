@@ -20,9 +20,7 @@
 @implementation WK_InterfaceGroup
 
 - (void) loadProfile: (WK_InterfaceProfile *) profile forInterfaceController: (WK_InterfaceController *) controller {
-	[self loadProfileDictionary: profile.interfaceDictionary];
-	[self loadItems: [profile itemsForController: controller]];
-	self.backgroundImageName = [profile imageNameForController: controller];
+	[self loadFromDictionary: [profile dictionaryForController: controller]];
 }
 
 - (void) loadItems: (NSArray *) items {
@@ -38,23 +36,21 @@
 	[self setNeedsLayout];
 }
 
-- (void) loadProfileDictionary: (NSDictionary *) dict {
+- (void) loadFromDictionary: (NSDictionary *) dict {
 	[super loadFromDictionary: dict];
-	self.horizontalLayout = ![dict[@"layout"] isEqual: @"vertical"];
+	[self loadItems: [dict objectForKey: @"items" inController: self.interfaceController]];
+	self.backgroundImageName = [dict objectForKey: @"image" inController: self.interfaceController];
+	self.horizontalLayout = ![[dict objectForKey: @"layout" inController: self.interfaceController] isEqual: @"vertical"] && !self.isRootGroup;
 	
-	self.spacing = (dict[@"spacing"]) ? [dict[@"spacing"] floatValue] : 2.0;
+	NSString			*spacingString = [dict objectForKey: @"spacing" inController: self.interfaceController];
+	NSString			*radiusString = [dict objectForKey: @"radius" inController: self.interfaceController];
+	
+	self.spacing = spacingString ? [spacingString floatValue] : 2.0;
 	self.cornerRadius = ((!self.isRootGroup && self.parentGroup == nil) || self.parentGroup.isRootGroup) ? 6.0 : 0.0;
-	if (dict[@"radius"]) self.cornerRadius = [dict[@"radius"] floatValue];
+	if (radiusString) self.cornerRadius = [radiusString floatValue];
 	
 	self.layer.cornerRadius = self.cornerRadius;
 	self.layer.masksToBounds = true;
-}
-
-- (void) loadFromDictionary: (NSDictionary *) dict {
-	
-	[self loadProfileDictionary: dict];
-	[self loadItems: dict[@"items"]];
-	
 }
 
 - (void) addItem: (NSDictionary *) item {
@@ -81,6 +77,11 @@
 	
 	for (WK_InterfaceObject *object in self.objects) {
 		CGRect			bounds = object.bounds;
+		
+		if (object.isHidden) {
+			if (self.horizontalLayout) bounds.size.width = 0; else bounds.size.height = 0;
+		}
+		
 		BOOL			isSeparator = [object isKindOfClass: [WK_InterfaceSeparator class]];
 		CGFloat			spacing = (isSeparator ? 0 : self.spacing);
 		
@@ -103,10 +104,14 @@
 }
 
 - (void) layoutComponentsInRect: (CGRect) rect {
-	CGPoint			topLeft = CGPointMake(self.cornerRadius, 0);
+	CGPoint			topLeft = CGPointMake(self.horizontalLayout ? self.cornerRadius : 0, self.horizontalLayout ? 0 : self.cornerRadius);
 	
 	for (WK_InterfaceObject *object in self.objects) {
 		CGSize			size = [object actualSizeInSize: rect.size];
+		if (object.isHidden) {
+			if (self.horizontalLayout) size.width = 0; else size.height = 0;
+		}
+
 		BOOL			isSeparator = [object isKindOfClass: [WK_InterfaceSeparator class]];
 		CGFloat			spacing = (isSeparator ? 0 : self.spacing);
 		
@@ -130,6 +135,7 @@
 
 - (void) objectChanged: (WK_InterfaceObject *) object {
 	[self setNeedsLayout];
+	[self.parentGroup objectChanged: self];
 }
 
 @end

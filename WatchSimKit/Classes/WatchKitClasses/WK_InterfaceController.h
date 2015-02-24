@@ -26,6 +26,7 @@
 @property (nonatomic) BOOL isRoot;
 @property (nonatomic, readonly) WK_NavigationController *navigationController;
 @property (nonatomic, readonly) WK_InterfaceController *rootController, *parentController;
+@property (nonatomic, readonly) NSString *interfaceSizeString;
 
 - (void) awakeWithContext: (id) context;
 - (void) willActivate;

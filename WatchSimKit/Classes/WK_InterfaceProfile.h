@@ -14,8 +14,7 @@
 
 + (instancetype) interfaceWithIdentifier: (NSString *) identifier fromDictionary: (NSDictionary *) dict;
 
-- (NSArray *) itemsForController: (WK_InterfaceController *) controller;
-- (NSString *) imageNameForController: (WK_InterfaceController *) controller;
+- (NSDictionary *) dictionaryForController: (WK_InterfaceController *) controller;
 
 @property (nonatomic) BOOL isRoot;
 @property (nonatomic, readonly) NSString *identifier;
@@ -23,4 +22,9 @@
 @property (nonatomic, readonly) id rowController;
 @property (nonatomic, readonly) NSDictionary *interfaceDictionary;
 
+@end
+
+
+@interface NSDictionary (WK_WatchSimKit)
+- (id) objectForKey: (id) aKey inController: (WK_InterfaceController *) controller;
 @end

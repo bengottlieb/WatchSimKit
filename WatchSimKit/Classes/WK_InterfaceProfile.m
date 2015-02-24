@@ -90,52 +90,18 @@
 
 }
 
-- (NSArray *) compactItems { return [self itemsOfType: @"compact"]; }
-- (NSArray *) regularItems { return [self itemsOfType: @"regular"]; }
-
-- (NSString *) compactImageName { return [self imageNameOfType: @"compact"]; }
-- (NSString *) regularImageName { return [self imageNameOfType: @"regular"]; }
-
-
-- (NSArray *) itemsOfType: (NSString *) type {
-	NSArray				*items = @[];
+- (NSDictionary *) dictionaryForController: (WK_InterfaceController *) controller {
+	NSMutableDictionary			*info = @{}.mutableCopy;
 	
-	NSString			*itemsKey = [NSString stringWithFormat: @"items-%@", type];
-	
-	for (NSDictionary *itemDict in self.interfaceDictionary[@"items"]) {
-		if (itemDict[@"type"] != nil) {
-			items = [items arrayByAddingObject: itemDict];
-			continue;
+	for (NSString *key in self.interfaceDictionary) {
+		NSArray		*components = [key componentsSeparatedByString: @"-"];
+		
+		if (components.count == 1 || [components.lastObject isEqual: controller.interfaceSizeString]) {
+			info[components[0]] = self.interfaceDictionary[key];
 		}
-		if (itemDict[itemsKey]) items = [items arrayByAddingObject: [self groupWithItems: itemDict[itemsKey]]];
-		if (itemDict[@"items"]) items = [items arrayByAddingObject: [self groupWithItems: itemDict[@"items"]]];
 	}
-	return items;
-}
 
-- (NSString *) imageNameOfType: (NSString *) type {
-	NSString			*imageKey = [NSString stringWithFormat: @"image-%@", type];
-	NSString			*imageName = nil;
-	
-	for (NSDictionary *itemDict in self.interfaceDictionary[@"items"]) {
-		if (itemDict[imageKey]) imageName = itemDict[imageKey];
-		if (itemDict[@"image"] && imageName == nil) imageName = itemDict[@"image"];
-	}
-	return imageName;
-}
-
-- (NSDictionary *) groupWithItems: (NSArray *) items {
-	return @{ @"type": @"group", @"radius": @0, @"items": items, @"spacing": @1.0};
-}
-
-- (NSArray *) itemsForController: (WK_InterfaceController *) controller {
-	if (controller.interfaceSize == WK_InterfaceSize_38mm) return self.compactItems;
-	return self.regularItems;
-}
-
-- (NSString *) imageNameForController: (WK_InterfaceController *) controller {
-	if (controller.interfaceSize == WK_InterfaceSize_38mm) return self.compactImageName;
-	return self.regularImageName;
+	return info;
 }
 
 - (id) rowController {
@@ -145,4 +111,13 @@
 	return _rowController;
 }
 
+@end
+
+
+@implementation NSDictionary (WK_WatchSimKit)
+- (id) objectForKey: (id) aKey inController: (WK_InterfaceController *) controller {
+	NSString		*specificKey = [NSString stringWithFormat: @"%@-%@", aKey, controller.interfaceSizeString];
+	
+	return self[specificKey] ?: self[aKey];
+}
 @end

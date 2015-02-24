@@ -91,13 +91,13 @@
 - (WK_InterfaceController *) controllerWithIdentifier: (NSString *) identifier {
 	WK_InterfaceProfile			*profile = [self profileWithIdentifier: identifier];
 	
-	return profile ? [WK_InterfaceController controllerWithProfile: profile inNavigationController: nil] : nil;
+	return profile ? [WK_InterfaceController controllerWithProfile: profile inNavigationController: self.navigationController] : nil;
 }
 
 - (WK_InterfaceController *) rootViewController {
 	WK_InterfaceProfile			*profile = self.rootProfile;
 	
-	return profile ? [WK_InterfaceController controllerWithProfile: profile inNavigationController: nil] : nil;
+	return profile ? [WK_InterfaceController controllerWithProfile: profile inNavigationController: self.navigationController] : nil;
 }
 
 - (WK_NavigationController *) navigationController {
