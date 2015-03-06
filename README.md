@@ -1,6 +1,8 @@
 # WatchSimKit
 An on-device Apple Watch simulator
 
+![Screenshot](https://cloud.githubusercontent.com/assets/53162/6518170/dbaf97f2-c368-11e4-8e71-4ded625431a6.png)
+
 WatchSimKit will let you take an existing WatchKit app and display it inside an iPhone app. 
 
 The displayed app will be fully interactive, and you can test things like tap targets and interface sizing.
